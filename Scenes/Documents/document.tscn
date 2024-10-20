@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://csu0d16ji8qcq"]
+
+[ext_resource type="Script" path="res://Scripts/document.gd" id="1_8muf6"]
+[ext_resource type="Texture2D" uid="uid://dsco44yt5d4bx" path="res://Temp/ID Card.png" id="2_rpm52"]
+[ext_resource type="Texture2D" uid="uid://dgj4pn5stht11" path="res://Temp/idcardsmol.png" id="3_8ncq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wei6o"]
+size = Vector2(126, 71)
+
+[node name="Document" type="CharacterBody2D" groups=["Papers"]]
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_8muf6")
+bigTexture = ExtResource("2_rpm52")
+smallTexture = ExtResource("3_8ncq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rpm52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_wei6o")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

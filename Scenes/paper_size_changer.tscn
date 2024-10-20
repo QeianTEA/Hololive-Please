@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwdv2pctr3mr1"]
+
+[ext_resource type="Script" path="res://Scripts/paper_size_changer.gd" id="1_sssrb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8mbj"]
+size = Vector2(426, 125)
+
+[node name="paper_size_changer" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_sssrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q8mbj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

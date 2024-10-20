@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fr2wttqqjpip"
-path="res://.godot/imported/marine.png-433fa0f7412a71b1b48424d4a31ba54e.ctex"
+uid="uid://djune22nm2aee"
+path="res://.godot/imported/gura.png-1070aeefd777491a89dcf6a361f6edea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/marine.png"
-dest_files=["res://.godot/imported/marine.png-433fa0f7412a71b1b48424d4a31ba54e.ctex"]
+source_file="res://Sprites/Characters/gura.png"
+dest_files=["res://.godot/imported/gura.png-1070aeefd777491a89dcf6a361f6edea.ctex"]
 
 [params]
 

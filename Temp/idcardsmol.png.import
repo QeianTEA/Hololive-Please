@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t5urvhwdejyv"
-path="res://.godot/imported/yagoo.png-e6a846e18883bea9259abb72f88b5608.ctex"
+uid="uid://dgj4pn5stht11"
+path="res://.godot/imported/idcardsmol.png-49f1fc3fb259684f3f104d512a14b79d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/yagoo.png"
-dest_files=["res://.godot/imported/yagoo.png-e6a846e18883bea9259abb72f88b5608.ctex"]
+source_file="res://Temp/idcardsmol.png"
+dest_files=["res://.godot/imported/idcardsmol.png-49f1fc3fb259684f3f104d512a14b79d.ctex"]
 
 [params]
 

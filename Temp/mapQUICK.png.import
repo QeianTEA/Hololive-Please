@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd4h08csbkg0e"
-path="res://.godot/imported/officerkroner.png-78542a671e1e0ae8e854cf12d6a635ba.ctex"
+uid="uid://ockqtyf763pb"
+path="res://.godot/imported/mapQUICK.png-19dfcb960796ffbf2278a583dfc1ca4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/officerkroner.png"
-dest_files=["res://.godot/imported/officerkroner.png-78542a671e1e0ae8e854cf12d6a635ba.ctex"]
+source_file="res://Temp/mapQUICK.png"
+dest_files=["res://.godot/imported/mapQUICK.png-19dfcb960796ffbf2278a583dfc1ca4f.ctex"]
 
 [params]
 

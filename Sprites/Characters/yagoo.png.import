@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djune22nm2aee"
-path="res://.godot/imported/gura.png-7daf4dcc7cd36c591662291061af120c.ctex"
+uid="uid://t5urvhwdejyv"
+path="res://.godot/imported/yagoo.png-adef189ac218fb0634a33c6b26716006.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/gura.png"
-dest_files=["res://.godot/imported/gura.png-7daf4dcc7cd36c591662291061af120c.ctex"]
+source_file="res://Sprites/Characters/yagoo.png"
+dest_files=["res://.godot/imported/yagoo.png-adef189ac218fb0634a33c6b26716006.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd2pxxwafv4jv"
-path="res://.godot/imported/gigi.png-5f88305b73ab7a93fda212d0c7201ea6.ctex"
+uid="uid://06j6gw7via3r"
+path="res://.godot/imported/officerkronerhat.png-16b0b5f1479caf62536f1025545b3c91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/gigi.png"
-dest_files=["res://.godot/imported/gigi.png-5f88305b73ab7a93fda212d0c7201ea6.ctex"]
+source_file="res://Sprites/Characters/officerkronerhat.png"
+dest_files=["res://.godot/imported/officerkronerhat.png-16b0b5f1479caf62536f1025545b3c91.ctex"]
 
 [params]
 

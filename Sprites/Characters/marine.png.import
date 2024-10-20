@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq15kgmcln7i8"
-path="res://.godot/imported/mumei.png-22214d3c2f58929db40ab4fcdd59392b.ctex"
+uid="uid://fr2wttqqjpip"
+path="res://.godot/imported/marine.png-4ff125865ded105ec97fb1b1ebcb77a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/mumei.png"
-dest_files=["res://.godot/imported/mumei.png-22214d3c2f58929db40ab4fcdd59392b.ctex"]
+source_file="res://Sprites/Characters/marine.png"
+dest_files=["res://.godot/imported/marine.png-4ff125865ded105ec97fb1b1ebcb77a2.ctex"]
 
 [params]
 

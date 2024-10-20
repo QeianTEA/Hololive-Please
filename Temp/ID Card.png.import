@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://06j6gw7via3r"
-path="res://.godot/imported/officerkronerhat.png-cc8bf9bb839371aa0ec82b1237362829.ctex"
+uid="uid://dsco44yt5d4bx"
+path="res://.godot/imported/ID Card.png-4a266edc5ca7b45e08aa8206cfd85456.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/officerkronerhat.png"
-dest_files=["res://.godot/imported/officerkronerhat.png-cc8bf9bb839371aa0ec82b1237362829.ctex"]
+source_file="res://Temp/ID Card.png"
+dest_files=["res://.godot/imported/ID Card.png-4a266edc5ca7b45e08aa8206cfd85456.ctex"]
 
 [params]
 

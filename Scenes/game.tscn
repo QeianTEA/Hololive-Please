@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqlku2u04uc8n"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_jgtvi"]
+[ext_resource type="Texture2D" uid="uid://cj1r8dxiwfj3x" path="res://Sprites/Background/Table.png" id="2_0bqkd"]
+[ext_resource type="PackedScene" uid="uid://bhs82fumcwpcg" path="res://Scenes/paper_getter.tscn" id="2_fr3k8"]
+[ext_resource type="Texture2D" uid="uid://b26eivbei0ti0" path="res://Sprites/Background/Blinds.png" id="3_u1x5x"]
+[ext_resource type="PackedScene" uid="uid://csu0d16ji8qcq" path="res://Scenes/Documents/document.tscn" id="3_vq0w3"]
+[ext_resource type="Texture2D" uid="uid://ockqtyf763pb" path="res://Temp/mapQUICK.png" id="6_tc52k"]
+[ext_resource type="PackedScene" uid="uid://bwdv2pctr3mr1" path="res://Scenes/paper_size_changer.tscn" id="7_j57od"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jgtvi")
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Table" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(450, 408)
+scale = Vector2(3, 3)
+texture = ExtResource("2_0bqkd")
+
+[node name="Blinds" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(208.5, 252)
+scale = Vector2(3, 3)
+texture = ExtResource("3_u1x5x")
+
+[node name="MapQuick" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(450, 67)
+scale = Vector2(3, 3)
+texture = ExtResource("6_tc52k")
+
+[node name="PaperGetter" parent="." instance=ExtResource("2_fr3k8")]
+
+[node name="Document" parent="." instance=ExtResource("3_vq0w3")]
+position = Vector2(214, 412)
+
+[node name="paper_size_changer" parent="." instance=ExtResource("7_j57od")]
+position = Vector2(138, 446)
+
+[node name="CollisionShape2D" parent="paper_size_changer" index="0"]
+position = Vector2(75, 0.5)
+
+[editable path="paper_size_changer"]

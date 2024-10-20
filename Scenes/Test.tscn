@@ -1,61 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxykl42kmolan"]
+[gd_scene load_steps=9 format=3 uid="uid://dxykl42kmolan"]
 
 [ext_resource type="Texture2D" uid="uid://cc3key2nhmwyc" path="res://Temp/Testssss.png" id="1_t6knm"]
-[ext_resource type="Texture2D" uid="uid://t5urvhwdejyv" path="res://Sprites/yagoo.png" id="2_k5fvp"]
-[ext_resource type="Texture2D" uid="uid://djune22nm2aee" path="res://Sprites/gura.png" id="3_ns3p8"]
+[ext_resource type="Texture2D" uid="uid://t5urvhwdejyv" path="res://Sprites/Characters/yagoo.png" id="2_k5fvp"]
+[ext_resource type="Texture2D" uid="uid://djune22nm2aee" path="res://Sprites/Characters/gura.png" id="3_ns3p8"]
 [ext_resource type="Texture2D" uid="uid://b0fd8u18xic7r" path="res://Temp/output-onlinepngtools.png" id="3_yilb0"]
-
-[sub_resource type="Animation" id="Animation_thtbd"]
-resource_name = "new_animation"
-length = 3.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.1, 2.4, 2.8),
-"transitions": PackedFloat32Array(1.23114, 0.68302, 0.435275, 2.21914),
-"update": 0,
-"values": [Vector2(268, 179), Vector2(427, 163), Vector2(570.72, 131), Vector2(577, 131)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8, 1.2, 1.7, 2.6),
-"transitions": PackedFloat32Array(1, -2, -0.5, -2, -2, 1),
-"update": 0,
-"values": [0.0, 0.00174533, -0.0261799, 0.0, 0.0279253, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.3, 3),
-"transitions": PackedFloat32Array(1.93187, 2.14355, -2.46229),
-"update": 0,
-"values": [Vector2(1.768, 2.528), Vector2(2.3, 2.528), Vector2(2.5284, 2.5284)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.0799999, 2.9, 3.5),
-"transitions": PackedFloat32Array(3.605, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
+[ext_resource type="PackedScene" uid="uid://csu0d16ji8qcq" path="res://Scenes/Documents/document.tscn" id="5_tgpus"]
 
 [sub_resource type="Animation" id="Animation_uyfk4"]
 length = 0.001
@@ -108,46 +57,106 @@ tracks/3/keys = {
 "values": [-0.0750492]
 }
 
+[sub_resource type="Animation" id="Animation_thtbd"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.95, 1.45),
+"transitions": PackedFloat32Array(1.23114, 0.68302, 0.183011, 2.21914),
+"update": 0,
+"values": [Vector2(268, 179), Vector2(427, 163), Vector2(568.14, 131), Vector2(577, 131)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4, 0.65),
+"transitions": PackedFloat32Array(1, -2, -0.5, -2),
+"update": 0,
+"values": [0.0279253, 0.0174533, -0.0436332, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.95),
+"transitions": PackedFloat32Array(1.93187, 2.14355, 0.267943),
+"update": 0,
+"values": [Vector2(1.768, 2.528), Vector2(2.3, 2.528), Vector2(2.5284, 2.5284)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0799999, 1.2, 1.7),
+"transitions": PackedFloat32Array(3.605, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g8mi8"]
 _data = {
 "RESET": SubResource("Animation_uyfk4"),
 "new_animation": SubResource("Animation_thtbd")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Test" type="Node2D"]
 
 [node name="Testssss2" type="Sprite2D" parent="."]
 position = Vector2(580, 319)
 scale = Vector2(0.798124, 0.588044)
 texture = ExtResource("1_t6knm")
 
-[node name="Yagoo" type="Sprite2D" parent="."]
+[node name="Yagoo" type="Sprite2D" parent="Testssss2"]
+visible = false
 position = Vector2(348, 130)
 scale = Vector2(1.888, 2.528)
 skew = -0.0750492
 texture = ExtResource("2_k5fvp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Yagoo"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Testssss2/Yagoo"]
 libraries = {
 "": SubResource("AnimationLibrary_g8mi8")
 }
 autoplay = "new_animation"
 
-[node name="NotYagoo" type="Sprite2D" parent="."]
-visible = false
+[node name="NotYagoo" type="Sprite2D" parent="Testssss2"]
 position = Vector2(348, 130)
 scale = Vector2(1.888, 2.528)
 skew = -0.0750492
 texture = ExtResource("3_ns3p8")
 offset = Vector2(0, 32.36)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NotYagoo"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Testssss2/NotYagoo"]
 libraries = {
 "": SubResource("AnimationLibrary_g8mi8")
 }
 autoplay = "new_animation"
 
-[node name="Testssss" type="Sprite2D" parent="."]
-position = Vector2(579.643, 322.217)
-scale = Vector2(0.799662, 0.594594)
+[node name="Testssss" type="Sprite2D" parent="Testssss2"]
+position = Vector2(-0.447266, 5.4707)
+scale = Vector2(1.00193, 1.01114)
 texture = ExtResource("3_yilb0")
+
+[node name="Document" parent="." instance=ExtResource("5_tgpus")]
+position = Vector2(391, 250)
+
+[node name="Document2" parent="." instance=ExtResource("5_tgpus")]
+position = Vector2(400, 352)
