@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/paper_size_changer.gd" id="1_sssrb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8mbj"]
-size = Vector2(426, 125)
+size = Vector2(406, 336)
 
 [node name="paper_size_changer" type="Area2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 12
 script = ExtResource("1_sssrb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
