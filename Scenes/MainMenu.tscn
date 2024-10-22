@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b386dnhmacvt2"]
+[gd_scene load_steps=22 format=3 uid="uid://b386dnhmacvt2"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_3wm8w"]
 [ext_resource type="Texture2D" uid="uid://dd4y6gkfaktn7" path="res://Sprites/Menu/Main Logo.png" id="1_siyxe"]
@@ -8,11 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://c6rcw7nwv60fq" path="res://Sprites/Menu/start.png" id="5_ny4f6"]
 [ext_resource type="Texture2D" uid="uid://hsfcito2n1ep" path="res://Sprites/Menu/quit.png" id="6_crlu5"]
 [ext_resource type="Texture2D" uid="uid://dh6sp1ep66ha4" path="res://Sprites/Menu/option.png" id="7_wjlvw"]
+[ext_resource type="Texture2D" uid="uid://dgosrdlh7pmyf" path="res://Sprites/Menu/arrowhighlight.png" id="8_cy8rm"]
 [ext_resource type="Texture2D" uid="uid://dswhodcj5bm08" path="res://Sprites/Menu/credite.png" id="8_fs7bb"]
 [ext_resource type="Texture2D" uid="uid://b0qo8hgappf33" path="res://Temp/test.png" id="9_q2eg6"]
 [ext_resource type="Texture2D" uid="uid://0rfjb1bnwwvx" path="res://Sprites/Menu/metrostamp.png" id="10_3itwg"]
 [ext_resource type="Texture2D" uid="uid://8qywlhsjix84" path="res://Sprites/Menu/disclaimer.png" id="11_smlsi"]
 [ext_resource type="AudioStream" uid="uid://cusmbp6uupk4f" path="res://SFX/Music/HoloCon 1999 Main Theme.wav" id="12_oj3f1"]
+[ext_resource type="Texture2D" uid="uid://cok0wlrv2wew0" path="res://Sprites/Menu/bgmid.png" id="14_0veo5"]
 
 [sub_resource type="Animation" id="Animation_0um43"]
 resource_name = "MenuMain"
@@ -161,6 +163,21 @@ _data = {
 "RESET": SubResource("Animation_srtvb")
 }
 
+[sub_resource type="Animation" id="Animation_fwelv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(450, 160)]
+}
+
 [sub_resource type="Animation" id="Animation_7jij4"]
 resource_name = "TitleBounce"
 length = 2.0
@@ -176,21 +193,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.5, 2, 1, 0.5, 2, 1),
 "update": 0,
 "values": [Vector2(450, 160), Vector2(450, 174), Vector2(450, 174), Vector2(450, 174), Vector2(450, 160), Vector2(450, 160)]
-}
-
-[sub_resource type="Animation" id="Animation_fwelv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(450, 160)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spuej"]
@@ -249,27 +251,53 @@ position = Vector2(450, 397)
 scale = Vector2(3, 3)
 texture = ExtResource("5_ny4f6")
 
-[node name="Button" type="Button" parent="Menu/Buttons/Start"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -22.0
-offset_top = -6.0
-offset_right = 23.0
-offset_bottom = 6.0
+[node name="StartB" type="Button" parent="Menu/Buttons/Start"]
+offset_left = -32.0
+offset_top = -9.0
+offset_right = 32.0
+offset_bottom = 7.0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("8_cy8rm")
+expand_icon = true
 
 [node name="Option" type="Sprite2D" parent="Menu/Buttons"]
 position = Vector2(450, 441)
 scale = Vector2(3, 3)
 texture = ExtResource("7_wjlvw")
 
+[node name="OptionB" type="Button" parent="Menu/Buttons/Option"]
+offset_left = -27.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("8_cy8rm")
+
 [node name="Credite" type="Sprite2D" parent="Menu/Buttons"]
-position = Vector2(450, 485)
+position = Vector2(450, 486)
 scale = Vector2(3, 3)
 texture = ExtResource("8_fs7bb")
 
+[node name="CreditB" type="Button" parent="Menu/Buttons/Credite"]
+offset_left = -26.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("8_cy8rm")
+
 [node name="Quit" type="Sprite2D" parent="Menu/Buttons"]
-position = Vector2(450, 529)
+position = Vector2(450, 532)
 scale = Vector2(3, 3)
 texture = ExtResource("6_crlu5")
+
+[node name="QuitB" type="Button" parent="Menu/Buttons/Quit"]
+offset_left = -21.0
+offset_top = -8.0
+offset_right = 21.0
+offset_bottom = 8.0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("8_cy8rm")
 
 [node name="Disclaimer" type="Sprite2D" parent="."]
 position = Vector2(450, 341)
@@ -284,4 +312,16 @@ texture = ExtResource("3_3bx6d")
 position = Vector2(-178, 467)
 texture = ExtResource("4_4xxpm")
 
-[connection signal="pressed" from="Menu/Buttons/Start/Button" to="." method="_on_start_button_pressed"]
+[node name="Bgmid" type="Sprite2D" parent="."]
+position = Vector2(-180, 525)
+texture = ExtResource("14_0veo5")
+
+[connection signal="mouse_entered" from="Menu/Buttons/Start/StartB" to="." method="_on_button_mouse_entered" binds= [1]]
+[connection signal="mouse_exited" from="Menu/Buttons/Start/StartB" to="." method="_on_button_mouse_exited" binds= [1]]
+[connection signal="pressed" from="Menu/Buttons/Start/StartB" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Menu/Buttons/Option/OptionB" to="." method="_on_button_mouse_entered" binds= [2]]
+[connection signal="mouse_exited" from="Menu/Buttons/Option/OptionB" to="." method="_on_button_mouse_exited" binds= [2]]
+[connection signal="mouse_entered" from="Menu/Buttons/Credite/CreditB" to="." method="_on_button_mouse_entered" binds= [3]]
+[connection signal="mouse_exited" from="Menu/Buttons/Credite/CreditB" to="." method="_on_button_mouse_exited" binds= [3]]
+[connection signal="mouse_entered" from="Menu/Buttons/Quit/QuitB" to="." method="_on_button_mouse_entered" binds= [4]]
+[connection signal="mouse_exited" from="Menu/Buttons/Quit/QuitB" to="." method="_on_button_mouse_exited" binds= [4]]
