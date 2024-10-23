@@ -3,9 +3,24 @@ extends Node2D
 var paper_stack = []
 #const paper_scene = preload("res://Scenes/Documents/document.tscn") #test
 
+var yesMark : Texture = preload("res://Sprites/Documents/allowedstampmark.png")
+var noMark : Texture = preload("res://Sprites/Documents/deniedstampmark.png")
+var paperCanBeYes = null
+var paperCanBeNo = null
+
 @onready var blindsAnimation = $Background/Blinds/AnimationPlayer
 @onready var blinds_up_button = $Buttons/BlindsUpButton
 @onready var blinds_down_button = $Buttons/BlindsDownButton
+
+@onready var stampOpenAnimation = $Background/Stampbarmain/StampAnimtoin
+@onready var stamp_open_button = $Buttons/StampOpenButton
+@onready var stamp_close_button = $Buttons/StampCloseButton
+
+
+@onready var stamp_noAnimation = $Background/Stampbarmain/Stampbarno/Stampbarhead/StampNo
+@onready var stamp_yesAnimation = $Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYes
+@onready var no_marker = $Background/Stampbarmain/StampNoArea/NoMarker
+@onready var yes_marker = $Background/Stampbarmain/StampYesArea/YesMarker
 
 
 
@@ -51,3 +66,67 @@ func _on_blinds_down_button_pressed():
 		blinds_down_button.disabled = true
 		blinds_up_button.disabled = false
 		blindsAnimation.play_backwards("BlindsAnim")
+
+
+func _on_stamp_open_button_pressed():
+	stamp_open_button.disabled = true
+	stamp_close_button.disabled = false
+	stampOpenAnimation.play("StampBarOpenClose")
+
+
+func _on_stamp_close_button_pressed():
+	stamp_open_button.disabled = false
+	stamp_close_button.disabled = true
+	stampOpenAnimation.play_backwards("StampBarOpenClose")
+
+
+func _on_stamp_no_button_pressed():
+	stamp_noAnimation.play("StampGoDown")
+	if paperCanBeNo != null and paperCanBeNo.canBeStamped:
+		print("print it out baby")
+		var mark_instance = Sprite2D.new()
+		mark_instance.texture = noMark
+		mark_instance.position = paperCanBeNo.to_local(no_marker.get_global_position())
+		paperCanBeNo.clipper.add_child(mark_instance)  # Add the mark to the scene
+
+
+
+func _on_stamp_yes_button_pressed():
+	stamp_yesAnimation.play("StampYes")
+	if paperCanBeYes != null and paperCanBeYes.canBeStamped:
+		print("print it out baby")
+		var mark_instance = Sprite2D.new()
+		mark_instance.texture = yesMark
+		mark_instance.position = paperCanBeYes.to_local(yes_marker.get_global_position())
+		paperCanBeYes.clipper.add_child(mark_instance)  # Add the mark to the scene
+
+
+func _on_stamp_yes_area_body_entered(body):
+	if body.is_in_group("Papers"):
+		if body.chossen:
+			print("body spotted")
+			paperCanBeYes = body
+		else:
+			paperCanBeYes = null
+			print("nope")
+
+
+func _on_stamp_yes_area_body_exited(body):
+		if body == paperCanBeYes:
+			paperCanBeYes = null
+			print("no more")
+
+
+func _on_stamp_no_area_body_entered(body):
+	if body.is_in_group("Papers"):
+		if body.chossen:
+			print("body spotted")
+			paperCanBeNo = body
+		else:
+			paperCanBeNo = null
+			print("nope")
+
+func _on_stamp_no_area_body_exited(body):
+	if body == paperCanBeNo:
+		paperCanBeNo = null
+		print("no more")

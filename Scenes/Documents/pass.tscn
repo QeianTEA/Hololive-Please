@@ -17,8 +17,11 @@ bigTextureScale = 1.5
 bigTexture = ExtResource("2_4a1hw")
 smallTexture = ExtResource("3_1y6ke")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
+[node name="Clipper" type="Sprite2D" parent="."]
+clip_children = 1
+texture = ExtResource("2_4a1hw")
+
+[node name="MainImages" type="Sprite2D" parent="Clipper"]
 texture = ExtResource("2_4a1hw")
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]

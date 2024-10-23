@@ -9,7 +9,9 @@ var newPosition = Vector2()
 @export var bigTexture = Texture2D
 @export var smallTexture = Texture2D
 
-@onready var sprite_2d = $Sprite2D
+@export var canBeStamped = true
+@onready var clipper = $Clipper
+@onready var sprite_2d = $Clipper/MainImages
 @onready var small_collider = $SmallCollider
 
 var mouse_in = false
@@ -43,10 +45,23 @@ func chosen():
 func sizechange(big):
 	if big:
 		scale = Vector2(bigTextureScale, bigTextureScale)
+		hideAllSprites(false)
 		sprite_2d.texture = bigTexture
 	else:
 		scale = Vector2(1,1)
+		hideAllSprites(true)
 		sprite_2d.texture = smallTexture
+
+func hideAllSprites(yes):
+	if yes:
+		for child in clipper.get_children():
+			if child is Sprite2D and child != sprite_2d:  # Check if the child node is of type Sprite
+				child.visible = false  # Set the visibility to false
+	else:
+		for child in clipper.get_children():
+			if child is Sprite2D:  # Check if the child node is of type Sprite
+				child.visible = true  # Set the visibility to false
+
 
 func _on_mouse_entered():
 	mouse_in = true

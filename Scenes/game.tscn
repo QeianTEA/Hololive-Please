@@ -1,14 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqlku2u04uc8n"]
+[gd_scene load_steps=28 format=3 uid="uid://dqlku2u04uc8n"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_jgtvi"]
-[ext_resource type="Texture2D" uid="uid://cj1r8dxiwfj3x" path="res://Sprites/Background/Table.png" id="2_0bqkd"]
+[ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="2_fp7rf"]
 [ext_resource type="PackedScene" uid="uid://bhs82fumcwpcg" path="res://Scenes/paper_getter.tscn" id="2_fr3k8"]
-[ext_resource type="Texture2D" uid="uid://b26eivbei0ti0" path="res://Sprites/Background/Blinds.png" id="3_u1x5x"]
+[ext_resource type="Texture2D" uid="uid://b26eivbei0ti0" path="res://Sprites/Table/Blinds.png" id="3_shhio"]
 [ext_resource type="PackedScene" uid="uid://csu0d16ji8qcq" path="res://Scenes/Documents/document.tscn" id="3_vq0w3"]
-[ext_resource type="Texture2D" uid="uid://srvdm206717h" path="res://Sprites/Background/BG.png" id="6_e4nxj"]
 [ext_resource type="Texture2D" uid="uid://ockqtyf763pb" path="res://Temp/mapQUICK.png" id="6_tc52k"]
+[ext_resource type="Texture2D" uid="uid://srvdm206717h" path="res://Sprites/Table/BG.png" id="6_vi3e4"]
 [ext_resource type="PackedScene" uid="uid://bwdv2pctr3mr1" path="res://Scenes/paper_size_changer.tscn" id="7_j57od"]
 [ext_resource type="PackedScene" uid="uid://dy3q0q3f1c4rv" path="res://Scenes/Documents/pass.tscn" id="8_ah5kh"]
+[ext_resource type="Texture2D" uid="uid://bdfi3ut320up6" path="res://Sprites/Table/stampbarno.png" id="8_d7t1i"]
+[ext_resource type="Texture2D" uid="uid://b47f0fof65pjq" path="res://Sprites/Table/stampbaryes.png" id="9_peo84"]
+[ext_resource type="Texture2D" uid="uid://buh4u7weqorkj" path="res://Sprites/Table/stampbarhead.png" id="9_tv1nb"]
+[ext_resource type="Texture2D" uid="uid://o30ahqjbkdmk" path="res://Sprites/Table/stampbarmain.png" id="10_eoqhc"]
+[ext_resource type="Texture2D" uid="uid://c4oogeocm730c" path="res://Sprites/Table/stampbarbottom.png" id="11_0hnxr"]
 
 [sub_resource type="Animation" id="Animation_nf0qn"]
 resource_name = "BlindsAnim"
@@ -22,7 +27,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(208.5, 252), Vector2(208.5, 95)]
+"values": [Vector2(238.53, 252), Vector2(238.53, 95)]
 }
 
 [sub_resource type="Animation" id="Animation_rggy6"]
@@ -49,22 +54,158 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptmwa"]
 size = Vector2(49.2131, 15.1278)
 
+[sub_resource type="Animation" id="Animation_vw3t8"]
+resource_name = "StampBarOpenClose"
+length = 0.3025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.233258, 0),
+"update": 0,
+"values": [Vector2(1102, 306), Vector2(717, 306)]
+}
+
+[sub_resource type="Animation" id="Animation_ov1pn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1102, 306)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2el0c"]
+_data = {
+"RESET": SubResource("Animation_ov1pn"),
+"StampBarOpenClose": SubResource("Animation_vw3t8")
+}
+
+[sub_resource type="Animation" id="Animation_gwwom"]
+resource_name = "StampGoDown"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35, 0.4),
+"transitions": PackedFloat32Array(0.5, 0, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.5, -24), Vector2(0.5, -14), Vector2(0.5, -14), Vector2(0.5, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35, 0.45),
+"transitions": PackedFloat32Array(0.5, 0, 0.5, 0.00515433),
+"update": 0,
+"values": [Vector2(47, 2), Vector2(47, 10), Vector2(47, 10), Vector2(47, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_86xwk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rdd4s"]
+_data = {
+"RESET": SubResource("Animation_86xwk"),
+"StampGoDown": SubResource("Animation_gwwom")
+}
+
+[sub_resource type="Animation" id="Animation_0ston"]
+resource_name = "StampYes"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35, 0.4),
+"transitions": PackedFloat32Array(0.5, 0, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -24), Vector2(0, -14), Vector2(0, -14), Vector2(0, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35, 0.5),
+"transitions": PackedFloat32Array(0.5, 0, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(-49, 2), Vector2(-49, 10), Vector2(-49, 10), Vector2(-49, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ut2uo"]
+_data = {
+"StampYes": SubResource("Animation_0ston")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4gc4"]
+size = Vector2(33, 18.5)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jgtvi")
 
-[node name="Background" type="Node" parent="."]
+[node name="Background" type="Node2D" parent="."]
 
 [node name="Table" type="Sprite2D" parent="Background"]
 z_index = -2
 position = Vector2(450, 408)
 scale = Vector2(3, 3)
-texture = ExtResource("2_0bqkd")
+texture = ExtResource("2_fp7rf")
 
 [node name="Blinds" type="Sprite2D" parent="Background"]
 z_index = -2
 position = Vector2(208.5, 95)
 scale = Vector2(3, 3)
-texture = ExtResource("3_u1x5x")
+texture = ExtResource("3_shhio")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Blinds"]
 libraries = {
@@ -98,7 +239,7 @@ shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/Collisions"]
 position = Vector2(196, 632)
-scale = Vector2(9.71188, 19.4017)
+scale = Vector2(9.5641, 18.0406)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Background/Collisions"]
@@ -118,9 +259,90 @@ shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="Bg" type="Sprite2D" parent="Background"]
 z_index = -4
-position = Vector2(209, 283)
+position = Vector2(239, 283)
 scale = Vector2(2.6, 2.6)
-texture = ExtResource("6_e4nxj")
+texture = ExtResource("6_vi3e4")
+
+[node name="Stampbarmain" type="Sprite2D" parent="Background"]
+z_index = 15
+position = Vector2(1102, 306)
+scale = Vector2(2, 2)
+texture = ExtResource("10_eoqhc")
+
+[node name="StampAnimtoin" type="AnimationPlayer" parent="Background/Stampbarmain"]
+libraries = {
+"": SubResource("AnimationLibrary_2el0c")
+}
+
+[node name="Stampbarno" type="Sprite2D" parent="Background/Stampbarmain"]
+position = Vector2(47, 2)
+texture = ExtResource("8_d7t1i")
+
+[node name="Stampbarhead" type="Sprite2D" parent="Background/Stampbarmain/Stampbarno"]
+position = Vector2(0.5, -24)
+texture = ExtResource("9_tv1nb")
+
+[node name="StampNoButton" type="Button" parent="Background/Stampbarmain/Stampbarno/Stampbarhead"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -19.0
+offset_top = -19.0
+offset_right = -11.0
+offset_bottom = -11.0
+scale = Vector2(4.9117, 6.26044)
+
+[node name="StampNo" type="AnimationPlayer" parent="Background/Stampbarmain/Stampbarno/Stampbarhead"]
+libraries = {
+"": SubResource("AnimationLibrary_rdd4s")
+}
+
+[node name="Stampbaryes" type="Sprite2D" parent="Background/Stampbarmain"]
+position = Vector2(-49, 2)
+texture = ExtResource("9_peo84")
+
+[node name="Stampbarhead2" type="Sprite2D" parent="Background/Stampbarmain/Stampbaryes"]
+position = Vector2(0, -24)
+texture = ExtResource("9_tv1nb")
+
+[node name="StampYesButton" type="Button" parent="Background/Stampbarmain/Stampbaryes/Stampbarhead2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -19.0
+offset_top = -19.0
+offset_right = -11.0
+offset_bottom = -11.0
+scale = Vector2(4.9117, 6.22875)
+
+[node name="StampYes" type="AnimationPlayer" parent="Background/Stampbarmain/Stampbaryes/Stampbarhead2"]
+libraries = {
+"": SubResource("AnimationLibrary_ut2uo")
+}
+
+[node name="Stampbarbottom" type="Sprite2D" parent="Background/Stampbarmain"]
+position = Vector2(0, 31.5)
+texture = ExtResource("11_0hnxr")
+
+[node name="StampNoArea" type="Area2D" parent="Background/Stampbarmain"]
+position = Vector2(0, 15)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Stampbarmain/StampNoArea"]
+position = Vector2(46, 11.75)
+shape = SubResource("RectangleShape2D_u4gc4")
+
+[node name="NoMarker" type="Marker2D" parent="Background/Stampbarmain/StampNoArea"]
+position = Vector2(46, 12)
+
+[node name="StampYesArea" type="Area2D" parent="Background/Stampbarmain"]
+position = Vector2(0, 15)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Stampbarmain/StampYesArea"]
+position = Vector2(-49.5, 11.75)
+shape = SubResource("RectangleShape2D_u4gc4")
+
+[node name="YesMarker" type="Marker2D" parent="Background/Stampbarmain/StampYesArea"]
+position = Vector2(-49.5, 12)
 
 [node name="Buttons" type="Node" parent="."]
 
@@ -131,6 +353,7 @@ offset_top = 349.0
 offset_right = 207.0
 offset_bottom = 357.0
 scale = Vector2(1.64881, 2.014)
+disabled = true
 toggle_mode = true
 
 [node name="BlindsDownButton" type="Button" parent="Buttons"]
@@ -142,15 +365,43 @@ offset_bottom = 199.0
 scale = Vector2(2.1254, 2.41989)
 toggle_mode = true
 
+[node name="StampOpenButton" type="Button" parent="Buttons"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 875.0
+offset_top = 269.0
+offset_right = 883.0
+offset_bottom = 277.0
+scale = Vector2(3.43129, 14.8134)
+
+[node name="StampCloseButton" type="Button" parent="Buttons"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 490.0
+offset_top = 269.0
+offset_right = 498.0
+offset_bottom = 277.0
+scale = Vector2(3.5955, 14.5348)
+toggle_mode = true
+
 [node name="PaperGetter" parent="." instance=ExtResource("2_fr3k8")]
 
 [node name="Document" parent="." instance=ExtResource("3_vq0w3")]
 position = Vector2(132, 496)
 
 [node name="Document2" parent="." instance=ExtResource("8_ah5kh")]
-position = Vector2(672, 436)
+position = Vector2(689, 501)
 
+[node name="Document3" parent="." instance=ExtResource("3_vq0w3")]
+position = Vector2(278, 446)
+
+[connection signal="pressed" from="Background/Stampbarmain/Stampbarno/Stampbarhead/StampNoButton" to="." method="_on_stamp_no_button_pressed"]
+[connection signal="pressed" from="Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYesButton" to="." method="_on_stamp_yes_button_pressed"]
+[connection signal="body_entered" from="Background/Stampbarmain/StampNoArea" to="." method="_on_stamp_no_area_body_entered"]
+[connection signal="body_exited" from="Background/Stampbarmain/StampNoArea" to="." method="_on_stamp_no_area_body_exited"]
+[connection signal="body_entered" from="Background/Stampbarmain/StampYesArea" to="." method="_on_stamp_yes_area_body_entered"]
+[connection signal="body_exited" from="Background/Stampbarmain/StampYesArea" to="." method="_on_stamp_yes_area_body_exited"]
 [connection signal="pressed" from="Buttons/BlindsUpButton" to="." method="_on_blinds_button_pressed"]
 [connection signal="pressed" from="Buttons/BlindsDownButton" to="." method="_on_blinds_down_button_pressed"]
+[connection signal="pressed" from="Buttons/StampOpenButton" to="." method="_on_stamp_open_button_pressed"]
+[connection signal="pressed" from="Buttons/StampCloseButton" to="." method="_on_stamp_close_button_pressed"]
 
 [editable path="Background/paper_size_changer"]
