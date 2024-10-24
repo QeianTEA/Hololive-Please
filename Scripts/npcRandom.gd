@@ -94,9 +94,12 @@ func _ready():
 	hairSprite.texture = hair.pick_random()
 	
 	hairSprite.self_modulate = RandomThatColor()
+	self_modulate = hairSprite.self_modulate
+	eyesSprite.self_modulate = hairSprite.self_modulate
+	mouthSprite.self_modulate = hairSprite.self_modulate
 	clothesSprite.self_modulate = RandomThatColor()
 	
-	var numScale = randf_range(0.8,1.2)
+	var numScale = randf_range(1,1.5)
 	get_parent().scale = Vector2(numScale,numScale)
 
 

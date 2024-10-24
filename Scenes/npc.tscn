@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bga50g7bl7dbq"]
+[gd_scene load_steps=11 format=3 uid="uid://bga50g7bl7dbq"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_56ldf"]
 [ext_resource type="Texture2D" uid="uid://rxkmx7ehlseh" path="res://Sprites/Characters/Generic NPC sprite/base.png" id="1_v2apn"]
@@ -11,6 +11,7 @@
 [sub_resource type="Animation" id="Animation_thtbd"]
 resource_name = "new_animation"
 length = 2.0
+loop_mode = 2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,14 +37,104 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.55, 0.85, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 0.0796601, 0.138696),
+"update": 0,
+"values": [Vector2(29, 344), Vector2(120, 337), Vector2(199, 319), Vector2(231.66, 296), Vector2(238, 296)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.65, 0.95, 1.15),
+"transitions": PackedFloat32Array(0.5, 1, 2, 0.5, 1),
+"update": 0,
+"values": [0.0, 0.0298235, -0.0255733, 0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath(".:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.15, 0.65, 0.95),
+"transitions": PackedFloat32Array(0.5, 1, 0.217638),
+"update": 0,
+"values": [Vector2(0.3, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Clothes:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.15, 0.65, 0.95),
+"transitions": PackedFloat32Array(0.5, 1, 0.217638),
+"update": 0,
+"values": [Vector2(0.3, 1), Vector2(0.75, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qnj2c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(29, 344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0298235]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g8mi8"]
 _data = {
-"EnterLeft": SubResource("Animation_thtbd")
+"EnterLeft": SubResource("Animation_thtbd"),
+"RESET": SubResource("Animation_qnj2c")
 }
 
 [node name="NPC" type="CharacterBody2D"]
 z_index = -3
+position = Vector2(29, 344)
+rotation = 0.0298235
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_56ldf")
 
@@ -57,6 +148,7 @@ script = ExtResource("3_4rn6t")
 texture = ExtResource("3_t5w65")
 
 [node name="Clothes" type="Sprite2D" parent="BaseSprite"]
+scale = Vector2(0.3, 1)
 texture = ExtResource("3_ltfie")
 
 [node name="Eyes" type="Sprite2D" parent="BaseSprite"]
@@ -65,9 +157,11 @@ texture = ExtResource("2_nkw40")
 [node name="Hair" type="Sprite2D" parent="BaseSprite"]
 texture = ExtResource("4_dlqhs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Come" type="AnimationPlayer" parent="."]
 root_node = NodePath("../BaseSprite")
 libraries = {
 "": SubResource("AnimationLibrary_g8mi8")
 }
 autoplay = "EnterLeft"
+
+[node name="Idle" type="AnimationPlayer" parent="."]

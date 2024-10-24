@@ -258,6 +258,11 @@ position = Vector2(-5.99994, 410)
 scale = Vector2(1.02427, 34.694)
 shape = SubResource("RectangleShape2D_ptmwa")
 
+[node name="NpcCollider" type="CollisionShape2D" parent="Background/Collisions"]
+position = Vector2(238, 320)
+scale = Vector2(9.20123, 3.67956)
+shape = SubResource("RectangleShape2D_ptmwa")
+
 [node name="Bg" type="Sprite2D" parent="Background"]
 z_index = -4
 position = Vector2(239, 283)
@@ -343,15 +348,15 @@ position = Vector2(46, 11.75)
 shape = SubResource("RectangleShape2D_u4gc4")
 
 [node name="NoMarker" type="Marker2D" parent="Background/Stampbarmain/StampNoArea"]
-position = Vector2(46, 12)
+position = Vector2(46.5, 12)
 
 [node name="Buttons" type="Node" parent="."]
 
 [node name="BlindsUpButton" type="Button" parent="Buttons"]
 modulate = Color(1, 1, 1, 0)
-offset_left = 199.0
+offset_left = 229.0
 offset_top = 349.0
-offset_right = 207.0
+offset_right = 237.0
 offset_bottom = 357.0
 scale = Vector2(1.64881, 2.014)
 disabled = true
@@ -359,9 +364,9 @@ toggle_mode = true
 
 [node name="BlindsDownButton" type="Button" parent="Buttons"]
 modulate = Color(1, 1, 1, 0)
-offset_left = 197.0
+offset_left = 227.0
 offset_top = 191.0
-offset_right = 205.0
+offset_right = 235.0
 offset_bottom = 199.0
 scale = Vector2(2.1254, 2.41989)
 toggle_mode = true
@@ -386,16 +391,12 @@ toggle_mode = true
 [node name="PaperGetter" parent="." instance=ExtResource("2_fr3k8")]
 
 [node name="Document" parent="." instance=ExtResource("3_vq0w3")]
-position = Vector2(132, 496)
+position = Vector2(207, 425)
 
 [node name="Document2" parent="." instance=ExtResource("8_ah5kh")]
-position = Vector2(689, 501)
-
-[node name="Document3" parent="." instance=ExtResource("3_vq0w3")]
-position = Vector2(278, 446)
+position = Vector2(245, 418)
 
 [node name="NPC" parent="." instance=ExtResource("15_dkk76")]
-position = Vector2(238, 296)
 
 [connection signal="pressed" from="Background/Stampbarmain/Stampbarno/Stampbarhead/StampNoButton" to="." method="_on_stamp_no_button_pressed"]
 [connection signal="pressed" from="Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYesButton" to="." method="_on_stamp_yes_button_pressed"]
@@ -407,3 +408,4 @@ position = Vector2(238, 296)
 [connection signal="pressed" from="Buttons/StampCloseButton" to="." method="_on_stamp_close_button_pressed"]
 
 [editable path="Background/paper_size_changer"]
+[editable path="NPC"]

@@ -33,7 +33,8 @@ var stampsAvailable = false
 #		add_paper(paper)
 
 func _ready():
-	pass
+	stampsAvailable = false
+	stamp_close_button.disabled = true
 
 func _physics_process(delta):
 	
@@ -108,6 +109,7 @@ func _on_stamp_open_button_pressed():
 
 func _on_stamp_close_button_pressed():
 	stamp_open_button.disabled = false
+	stampsAvailable = false
 	stamp_close_button.disabled = true
 	stampOpenAnimation.play_backwards("StampBarOpenClose")
 

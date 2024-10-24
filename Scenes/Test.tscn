@@ -1,44 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxykl42kmolan"]
+[gd_scene load_steps=6 format=3 uid="uid://dxykl42kmolan"]
 
 [ext_resource type="Texture2D" uid="uid://cc3key2nhmwyc" path="res://Temp/Testssss.png" id="1_t6knm"]
 [ext_resource type="Texture2D" uid="uid://t5urvhwdejyv" path="res://Sprites/Characters/yagoo.png" id="2_k5fvp"]
 [ext_resource type="Texture2D" uid="uid://djune22nm2aee" path="res://Sprites/Characters/gura.png" id="3_ns3p8"]
 [ext_resource type="Texture2D" uid="uid://b0fd8u18xic7r" path="res://Temp/output-onlinepngtools.png" id="3_yilb0"]
 [ext_resource type="PackedScene" uid="uid://csu0d16ji8qcq" path="res://Scenes/Documents/document.tscn" id="5_tgpus"]
-
-[sub_resource type="Animation" id="Animation_thtbd"]
-resource_name = "new_animation"
-length = 2.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:skew")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4, 0.65),
-"transitions": PackedFloat32Array(1, -2, -0.5, -2),
-"update": 0,
-"values": [0.0279253, 0.0174533, -0.0436332, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0799999, 1.2, 1.7),
-"transitions": PackedFloat32Array(3.605, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8mi8"]
-_data = {
-"EnterLeft": SubResource("Animation_thtbd")
-}
 
 [node name="Test" type="Node2D"]
 
@@ -54,24 +20,13 @@ scale = Vector2(1.768, 2.528)
 skew = 0.0279253
 texture = ExtResource("2_k5fvp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Testssss2/Yagoo"]
-libraries = {
-"": SubResource("AnimationLibrary_g8mi8")
-}
-autoplay = "EnterLeft"
-
 [node name="NotYagoo" type="Sprite2D" parent="Testssss2"]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(348, 130)
 scale = Vector2(1.888, 2.528)
-skew = -0.0750492
+skew = 0.0279253
 texture = ExtResource("3_ns3p8")
 offset = Vector2(0, 32.36)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Testssss2/NotYagoo"]
-libraries = {
-"": SubResource("AnimationLibrary_g8mi8")
-}
-autoplay = "EnterLeft"
 
 [node name="Testssss" type="Sprite2D" parent="Testssss2"]
 position = Vector2(-0.447266, 5.4707)
