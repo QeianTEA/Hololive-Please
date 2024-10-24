@@ -21,6 +21,8 @@ var paperCanBeNo = null
 @onready var stamp_yesAnimation = $Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYes
 @onready var no_marker = $Background/Stampbarmain/StampNoArea/NoMarker
 @onready var yes_marker = $Background/Stampbarmain/StampYesArea/YesMarker
+@onready var stamp_no_area = $Background/Stampbarmain/StampNoArea
+@onready var stamp_yes_area = $Background/Stampbarmain/StampYesArea
 
 
 
@@ -33,8 +35,29 @@ var paperCanBeNo = null
 func _ready():
 	pass
 
-
-
+func _physics_process(delta):
+	
+	
+	
+	#STAMPS
+	
+	if stamp_no_area.has_overlapping_bodies():
+		var body = []
+		body = stamp_no_area.get_overlapping_bodies()
+		for i in body.size():
+			if body[i].is_in_group("Papers"):
+				if body[i].chossen:
+					paperCanBeNo = body[i]
+	
+	if stamp_yes_area.has_overlapping_bodies():
+		var body= []
+		body = stamp_yes_area.get_overlapping_bodies()
+		for i in body.size():
+			if body[i].is_in_group("Papers"):
+				if body[i].chossen:
+					paperCanBeYes = body[i]
+	
+	
 
 
 
@@ -100,31 +123,10 @@ func _on_stamp_yes_button_pressed():
 		mark_instance.position = paperCanBeYes.to_local(yes_marker.get_global_position())
 		paperCanBeYes.clipper.add_child(mark_instance)  # Add the mark to the scene
 
-
-func _on_stamp_yes_area_body_entered(body):
-	if body.is_in_group("Papers"):
-		if body.chossen:
-			print("body spotted")
-			paperCanBeYes = body
-		else:
-			paperCanBeYes = null
-			print("nope")
-
-
 func _on_stamp_yes_area_body_exited(body):
 		if body == paperCanBeYes:
 			paperCanBeYes = null
 			print("no more")
-
-
-func _on_stamp_no_area_body_entered(body):
-	if body.is_in_group("Papers"):
-		if body.chossen:
-			print("body spotted")
-			paperCanBeNo = body
-		else:
-			paperCanBeNo = null
-			print("nope")
 
 func _on_stamp_no_area_body_exited(body):
 	if body == paperCanBeNo:

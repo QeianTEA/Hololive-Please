@@ -54,6 +54,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptmwa"]
 size = Vector2(49.2131, 15.1278)
 
+[sub_resource type="Animation" id="Animation_ov1pn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1102, 306)]
+}
+
 [sub_resource type="Animation" id="Animation_vw3t8"]
 resource_name = "StampBarOpenClose"
 length = 0.3025
@@ -70,7 +85,13 @@ tracks/0/keys = {
 "values": [Vector2(1102, 306), Vector2(717, 306)]
 }
 
-[sub_resource type="Animation" id="Animation_ov1pn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2el0c"]
+_data = {
+"RESET": SubResource("Animation_ov1pn"),
+"StampBarOpenClose": SubResource("Animation_vw3t8")
+}
+
+[sub_resource type="Animation" id="Animation_86xwk"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -82,13 +103,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1102, 306)]
+"values": [Vector2(0.5, -24)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2el0c"]
-_data = {
-"RESET": SubResource("Animation_ov1pn"),
-"StampBarOpenClose": SubResource("Animation_vw3t8")
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_gwwom"]
@@ -118,33 +145,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.5, 0, 0.5, 0.00515433),
 "update": 0,
 "values": [Vector2(47, 2), Vector2(47, 10), Vector2(47, 10), Vector2(47, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_86xwk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, -24)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(47, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rdd4s"]
@@ -322,8 +322,8 @@ texture = ExtResource("11_0hnxr")
 
 [node name="StampNoArea" type="Area2D" parent="Background/Stampbarmain"]
 position = Vector2(0, 15)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Stampbarmain/StampNoArea"]
 position = Vector2(46, 11.75)
@@ -334,8 +334,8 @@ position = Vector2(46, 12)
 
 [node name="StampYesArea" type="Area2D" parent="Background/Stampbarmain"]
 position = Vector2(0, 15)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Stampbarmain/StampYesArea"]
 position = Vector2(-49.5, 11.75)
@@ -395,9 +395,7 @@ position = Vector2(278, 446)
 
 [connection signal="pressed" from="Background/Stampbarmain/Stampbarno/Stampbarhead/StampNoButton" to="." method="_on_stamp_no_button_pressed"]
 [connection signal="pressed" from="Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYesButton" to="." method="_on_stamp_yes_button_pressed"]
-[connection signal="body_entered" from="Background/Stampbarmain/StampNoArea" to="." method="_on_stamp_no_area_body_entered"]
 [connection signal="body_exited" from="Background/Stampbarmain/StampNoArea" to="." method="_on_stamp_no_area_body_exited"]
-[connection signal="body_entered" from="Background/Stampbarmain/StampYesArea" to="." method="_on_stamp_yes_area_body_entered"]
 [connection signal="body_exited" from="Background/Stampbarmain/StampYesArea" to="." method="_on_stamp_yes_area_body_exited"]
 [connection signal="pressed" from="Buttons/BlindsUpButton" to="." method="_on_blinds_button_pressed"]
 [connection signal="pressed" from="Buttons/BlindsDownButton" to="." method="_on_blinds_down_button_pressed"]
