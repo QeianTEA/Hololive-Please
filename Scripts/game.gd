@@ -16,7 +16,7 @@ var paperCanBeNo = null
 @onready var stamp_open_button = $Buttons/StampOpenButton
 @onready var stamp_close_button = $Buttons/StampCloseButton
 
-
+var stampsAvailable = false
 @onready var stamp_noAnimation = $Background/Stampbarmain/Stampbarno/Stampbarhead/StampNo
 @onready var stamp_yesAnimation = $Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYes
 @onready var no_marker = $Background/Stampbarmain/StampNoArea/NoMarker
@@ -41,28 +41,35 @@ func _physics_process(delta):
 	
 	#STAMPS
 	
-	if stamp_no_area.has_overlapping_bodies():
+	if stampsAvailable && stamp_no_area.has_overlapping_bodies():
 		var body = []
+		var bodyPapers = []
 		body = stamp_no_area.get_overlapping_bodies()
 		for i in body.size():
 			if body[i].is_in_group("Papers"):
-				if body[i].chossen:
-					paperCanBeNo = body[i]
+				bodyPapers.append(body[i])
+		if bodyPapers.size() == 1:
+			paperCanBeNo = bodyPapers[0]
+		else:
+			for j in bodyPapers.size():
+					if bodyPapers[j].chossen:
+						paperCanBeNo = bodyPapers[j]
 	
-	if stamp_yes_area.has_overlapping_bodies():
-		var body= []
+	if stampsAvailable && stamp_yes_area.has_overlapping_bodies():
+		var body = []
+		var bodyPapers = []
 		body = stamp_yes_area.get_overlapping_bodies()
 		for i in body.size():
 			if body[i].is_in_group("Papers"):
-				if body[i].chossen:
-					paperCanBeYes = body[i]
+				bodyPapers.append(body[i])
+		if bodyPapers.size() == 1:
+			paperCanBeYes = bodyPapers[0]
+		else:
+			for j in bodyPapers.size():
+					if bodyPapers[j].chossen:
+						paperCanBeYes = bodyPapers[j]
 	
 	
-
-
-
-
-
 
 
 func add_paper(paper): #latests appear have the top count
@@ -87,12 +94,14 @@ func _on_blinds_button_pressed():
 
 func _on_blinds_down_button_pressed():
 		blinds_down_button.disabled = true
+		stampsAvailable = false
 		blinds_up_button.disabled = false
 		blindsAnimation.play_backwards("BlindsAnim")
 
 
 func _on_stamp_open_button_pressed():
 	stamp_open_button.disabled = true
+	stampsAvailable = true
 	stamp_close_button.disabled = false
 	stampOpenAnimation.play("StampBarOpenClose")
 
