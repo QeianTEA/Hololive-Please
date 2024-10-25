@@ -62,6 +62,21 @@ func hideAllSprites(yes):
 			if child is Sprite2D:  # Check if the child node is of type Sprite
 				child.visible = true  # Set the visibility to false
 
+func playAnimation():
+	var randomNum = randi_range(-10,10)
+	move_down(40 + randomNum, 0.5)  # Move 20 pixels down over 0.5 seconds
+
+func move_down(pixels: int, duration: float):
+	var tween = create_tween()
+	# Set start and end positions
+	var start_position = position
+	var end_position = start_position + Vector2(0, pixels)
+	
+	# Start the tween
+	tween.tween_property(self, "position", end_position, duration)
+
+	# Await the completion
+	await tween.finished
 
 func _on_mouse_entered():
 	mouse_in = true

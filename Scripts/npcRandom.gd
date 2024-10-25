@@ -108,6 +108,5 @@ func RandomThatColor():
 	return newColor
 
 func RandomThat():
-	var randomNum = 0
 	randomNum = randf_range(randomColorRange,255) / 255
 	return randomNum

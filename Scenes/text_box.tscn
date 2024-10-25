@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1ha15ci7we4n"]
+
+[ext_resource type="Texture2D" uid="uid://fl1sfb71os34" path="res://Fonts/text box.png" id="1_fcc4i"]
+[ext_resource type="Script" path="res://Scripts/text_box.gd" id="1_t5ft0"]
+[ext_resource type="FontFile" uid="uid://csw0uqjkyrvyb" path="res://Fonts/Atari_small Textbox/Atari Small.ttf" id="2_80b4h"]
+
+[node name="TextBox" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 146.0
+offset_bottom = 40.0
+script = ExtResource("1_t5ft0")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_fcc4i")
+region_rect = Rect2(-1, 0, 44, 6)
+patch_margin_left = 3
+patch_margin_top = 1
+patch_margin_right = 3
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_80b4h")
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="MarginContainer"]
+
+[connection signal="timeout" from="MarginContainer/LetterDisplayTimer" to="MarginContainer" method="_on_letter_display_timer_timeout"]

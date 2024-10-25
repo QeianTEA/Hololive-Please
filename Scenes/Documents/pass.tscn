@@ -22,7 +22,6 @@ clip_children = 1
 texture = ExtResource("2_4a1hw")
 
 [node name="MainImages" type="Sprite2D" parent="Clipper"]
-texture = ExtResource("2_4a1hw")
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]
 visible = false

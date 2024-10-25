@@ -23,7 +23,6 @@ scale = Vector2(0.6656, 0.6656)
 texture = ExtResource("5_5mmd5")
 
 [node name="MainImages" type="Sprite2D" parent="Clipper"]
-texture = ExtResource("5_5mmd5")
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]
 visible = false

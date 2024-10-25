@@ -1,17 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://bga50g7bl7dbq"]
+[gd_scene load_steps=17 format=3 uid="uid://bga50g7bl7dbq"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_56ldf"]
 [ext_resource type="Texture2D" uid="uid://rxkmx7ehlseh" path="res://Sprites/Characters/Generic NPC sprite/base.png" id="1_v2apn"]
 [ext_resource type="Texture2D" uid="uid://bawwss55rrmlo" path="res://Sprites/Characters/Generic NPC sprite/Eyes/eyes1.png" id="2_nkw40"]
+[ext_resource type="PackedScene" uid="uid://csu0d16ji8qcq" path="res://Scenes/Documents/document.tscn" id="2_v1jce"]
 [ext_resource type="Script" path="res://Scripts/npcRandom.gd" id="3_4rn6t"]
+[ext_resource type="PackedScene" uid="uid://dy3q0q3f1c4rv" path="res://Scenes/Documents/pass.tscn" id="3_fkhx8"]
 [ext_resource type="Texture2D" uid="uid://1wo5dh3m61ex" path="res://Sprites/Characters/Generic NPC sprite/Clothes/clothes1.png" id="3_ltfie"]
 [ext_resource type="Texture2D" uid="uid://ow0fnfjfa47u" path="res://Sprites/Characters/Generic NPC sprite/Mouth/mouth1.png" id="3_t5w65"]
 [ext_resource type="Texture2D" uid="uid://hx80upyk325r" path="res://Sprites/Characters/Generic NPC sprite/hair/hair1.png" id="4_dlqhs"]
+[ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="8_rjlhe"]
 
 [sub_resource type="Animation" id="Animation_thtbd"]
 resource_name = "new_animation"
 length = 2.0
-loop_mode = 2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -85,6 +87,34 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0.3, 1), Vector2(0.75, 1), Vector2(1, 1)]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Idle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["IdleWait", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ThrowOutDocuments"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_qnj2c"]
 length = 0.001
@@ -131,16 +161,55 @@ _data = {
 "RESET": SubResource("Animation_qnj2c")
 }
 
+[sub_resource type="Animation" id="Animation_j0q0i"]
+resource_name = "IdleWait"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6, 9),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(238, 296), Vector2(238, 296), Vector2(238, 294), Vector2(238, 296)]
+}
+
+[sub_resource type="Animation" id="Animation_kp2tn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(238, 296)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tyrje"]
+_data = {
+"IdleWait": SubResource("Animation_j0q0i"),
+"RESET": SubResource("Animation_kp2tn")
+}
+
 [node name="NPC" type="CharacterBody2D"]
 z_index = -3
-position = Vector2(29, 344)
+position = Vector2(238, 296)
 rotation = 0.0298235
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_56ldf")
+Document0 = ExtResource("2_v1jce")
+Document1 = ExtResource("3_fkhx8")
+lines = Array[String]([""])
 
 [node name="BaseSprite" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-skew = 0.0279253
 texture = ExtResource("1_v2apn")
 script = ExtResource("3_4rn6t")
 
@@ -148,7 +217,6 @@ script = ExtResource("3_4rn6t")
 texture = ExtResource("3_t5w65")
 
 [node name="Clothes" type="Sprite2D" parent="BaseSprite"]
-scale = Vector2(0.3, 1)
 texture = ExtResource("3_ltfie")
 
 [node name="Eyes" type="Sprite2D" parent="BaseSprite"]
@@ -165,3 +233,13 @@ libraries = {
 autoplay = "EnterLeft"
 
 [node name="Idle" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tyrje")
+}
+
+[node name="Table" type="Sprite2D" parent="."]
+visible = false
+z_index = -2
+position = Vector2(169.6, 89.6)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("8_rjlhe")
