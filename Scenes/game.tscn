@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dqlku2u04uc8n"]
+[gd_scene load_steps=28 format=3 uid="uid://dqlku2u04uc8n"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_jgtvi"]
 [ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="2_fp7rf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://buh4u7weqorkj" path="res://Sprites/Table/stampbarhead.png" id="9_tv1nb"]
 [ext_resource type="Texture2D" uid="uid://o30ahqjbkdmk" path="res://Sprites/Table/stampbarmain.png" id="10_eoqhc"]
 [ext_resource type="Texture2D" uid="uid://c4oogeocm730c" path="res://Sprites/Table/stampbarbottom.png" id="11_0hnxr"]
+[ext_resource type="PackedScene" uid="uid://r7olgcly6xii" path="res://Scenes/Text_box_Updated.tscn" id="12_n0oyl"]
 [ext_resource type="PackedScene" uid="uid://bga50g7bl7dbq" path="res://Scenes/npc.tscn" id="15_dkk76"]
 
 [sub_resource type="Animation" id="Animation_nf0qn"]
@@ -325,28 +326,37 @@ position = Vector2(0, 31.5)
 texture = ExtResource("11_0hnxr")
 
 [node name="StampYesArea" type="Area2D" parent="Background/Stampbarmain"]
-position = Vector2(0, 15)
+position = Vector2(0, 5)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Stampbarmain/StampYesArea"]
 position = Vector2(-49.5, 11.75)
+scale = Vector2(1.42016, 1.42016)
 shape = SubResource("RectangleShape2D_u4gc4")
 
 [node name="YesMarker" type="Marker2D" parent="Background/Stampbarmain/StampYesArea"]
-position = Vector2(-49.5, 12)
+position = Vector2(-49.5, 14)
 
 [node name="StampNoArea" type="Area2D" parent="Background/Stampbarmain"]
-position = Vector2(0, 15)
+position = Vector2(0, 5)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Stampbarmain/StampNoArea"]
 position = Vector2(46, 11.75)
+scale = Vector2(1.50249, 1.50249)
 shape = SubResource("RectangleShape2D_u4gc4")
 
 [node name="NoMarker" type="Marker2D" parent="Background/Stampbarmain/StampNoArea"]
-position = Vector2(46.5, 12)
+position = Vector2(46.5, 14)
+
+[node name="TextBoxU" parent="Background" instance=ExtResource("12_n0oyl")]
+z_index = 2
+offset_left = 92.0
+offset_top = 190.0
+offset_right = 387.0
+offset_bottom = 349.0
 
 [node name="Buttons" type="Node" parent="."]
 

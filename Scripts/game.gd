@@ -120,6 +120,7 @@ func _on_stamp_no_button_pressed():
 		print("print it out baby")
 		var mark_instance = Sprite2D.new()
 		mark_instance.texture = noMark
+		mark_instance.scale = Vector2(1.3,1.3)
 		mark_instance.position = paperCanBeNo.to_local(no_marker.get_global_position())
 		paperCanBeNo.clipper.add_child(mark_instance)  # Add the mark to the scene
 
@@ -131,6 +132,7 @@ func _on_stamp_yes_button_pressed():
 		print("print it out baby")
 		var mark_instance = Sprite2D.new()
 		mark_instance.texture = yesMark
+		mark_instance.scale = Vector2(1.3,1.3)
 		mark_instance.position = paperCanBeYes.to_local(yes_marker.get_global_position())
 		paperCanBeYes.clipper.add_child(mark_instance)  # Add the mark to the scene
 
