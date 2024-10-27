@@ -16,7 +16,7 @@ var newPosition = Vector2()
 
 var mouse_in = false
 var chossen = false
-var big = false
+var big
 
 
 func _input(event):

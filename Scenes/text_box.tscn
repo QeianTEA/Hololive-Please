@@ -4,33 +4,27 @@
 [ext_resource type="Script" path="res://Scripts/text_box.gd" id="1_t5ft0"]
 [ext_resource type="FontFile" uid="uid://csw0uqjkyrvyb" path="res://Fonts/Atari_small Textbox/Atari Small.ttf" id="2_80b4h"]
 
-[node name="TextBox" type="CanvasLayer"]
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 146.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" node_paths=PackedStringArray("label")]
+offset_right = 52.0
+offset_bottom = 34.0
+theme_override_constants/margin_bottom = 7
 script = ExtResource("1_t5ft0")
+label = NodePath("MarginContainer2/Label")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer2"]
 layout_mode = 2
 texture = ExtResource("1_fcc4i")
-region_rect = Rect2(-1, 0, 44, 6)
+region_rect = Rect2(0, 0, 42, 6)
 patch_margin_left = 3
 patch_margin_top = 1
 patch_margin_right = 3
 patch_margin_bottom = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
-
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_80b4h")
-vertical_alignment = 1
-
-[node name="LetterDisplayTimer" type="Timer" parent="MarginContainer"]
-
-[connection signal="timeout" from="MarginContainer/LetterDisplayTimer" to="MarginContainer" method="_on_letter_display_timer_timeout"]
+text = "Papers please."
