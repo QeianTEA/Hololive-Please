@@ -31,7 +31,6 @@ func start_conversation():
 
 func add_message(speaker: String, text: String):
 	
-	var message_line = VboxContainer
 	var box = text_box.instantiate()
 	
 	if speaker == "Player":

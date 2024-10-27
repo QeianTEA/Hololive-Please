@@ -8,6 +8,10 @@ var noMark : Texture = preload("res://Sprites/Documents/deniedstampmark.png")
 var paperCanBeYes = null
 var paperCanBeNo = null
 
+@onready var text_box = $Background/TextBoxU
+
+
+
 @onready var blindsAnimation = $Background/Blinds/AnimationPlayer
 @onready var blinds_up_button = $Buttons/BlindsUpButton
 @onready var blinds_down_button = $Buttons/BlindsDownButton

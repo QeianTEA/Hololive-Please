@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b386dnhmacvt2"]
+[gd_scene load_steps=23 format=3 uid="uid://b386dnhmacvt2"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_3wm8w"]
 [ext_resource type="Texture2D" uid="uid://dd4y6gkfaktn7" path="res://Sprites/Menu/Main Logo.png" id="1_siyxe"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://8qywlhsjix84" path="res://Sprites/Menu/disclaimer.png" id="11_smlsi"]
 [ext_resource type="AudioStream" uid="uid://cusmbp6uupk4f" path="res://SFX/Music/HoloCon 1999 Main Theme.wav" id="12_oj3f1"]
 [ext_resource type="Texture2D" uid="uid://cok0wlrv2wew0" path="res://Sprites/Menu/bgmid.png" id="14_0veo5"]
+[ext_resource type="VideoStream" path="res://Videos/Intro_Cutscene.ogv" id="16_qwjns"]
 
 [sub_resource type="Animation" id="Animation_0um43"]
 resource_name = "MenuMain"
@@ -204,6 +205,12 @@ _data = {
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_3wm8w")
 
+[node name="Test" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(450, 338)
+scale = Vector2(0.454, 0.454)
+texture = ExtResource("9_q2eg6")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_w234c")
@@ -212,13 +219,16 @@ autoplay = "MenuMain"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_oj3f1")
+volume_db = -10.0
 bus = &"Music"
 
-[node name="Test" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(450, 338)
-scale = Vector2(0.454, 0.454)
-texture = ExtResource("9_q2eg6")
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 907.0
+offset_bottom = 685.0
+stream = ExtResource("16_qwjns")
+bus = &"Video"
 
 [node name="Menu" type="Node2D" parent="."]
 visible = false
@@ -316,6 +326,7 @@ texture = ExtResource("4_4xxpm")
 position = Vector2(-180, 525)
 texture = ExtResource("14_0veo5")
 
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="mouse_entered" from="Menu/Buttons/Start/StartB" to="." method="_on_button_mouse_entered" binds= [1]]
 [connection signal="mouse_exited" from="Menu/Buttons/Start/StartB" to="." method="_on_button_mouse_exited" binds= [1]]
 [connection signal="pressed" from="Menu/Buttons/Start/StartB" to="." method="_on_start_button_pressed"]

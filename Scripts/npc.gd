@@ -8,11 +8,13 @@ var documents = []
 
 @export var lines: Array[String] = []
 
+var gameScript = Script
 
 func _ready():
 	documents.append(Document0)
 	documents.append(Document1)
 	documents.append(Document2)
+	gameScript = get_parent().get_script()
 
 func _physics_process(delta):
 	pass
