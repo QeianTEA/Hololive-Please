@@ -190,8 +190,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4gc4"]
 size = Vector2(33, 18.5)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("text_box")]
 script = ExtResource("1_jgtvi")
+text_box = NodePath("Background/TextBoxU")
 
 [node name="Background" type="Node2D" parent="."]
 

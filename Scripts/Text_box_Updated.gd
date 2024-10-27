@@ -9,25 +9,20 @@ const MAX_LINES = 4
 @onready var text_box = preload("res://Scenes/text_box.tscn")
 
 # Initialize conversation lines
-var conversation = [
-	{"speaker": "Player", "text": "tickets please."},
-	{"speaker": "NPC", "text": "Hello! Here's my ticket."},
-	{"speaker": "NPC", "text": "Nice weather today, isn’t it?"},
-	{"speaker": "NPC", "text": "I hope the ride will be smooth."},
-	{"speaker": "Player", "text": "cause no trouble."}
-]
+var tempConvo = []
 
 var current_line_index = 0
 
-func _ready():
-	start_conversation()
-
-func start_conversation():
+func start_conversation(conversation):
+	current_line_index = 0
 	# Start the first line by the player
-	add_message(conversation[current_line_index]["speaker"], conversation[current_line_index]["text"])
+	
+	tempConvo = conversation
+	add_message(tempConvo[current_line_index]["speaker"], tempConvo[current_line_index]["text"])
 	current_line_index += 1
 	# Start timer for NPC responses
 	$MessageTimer.start()
+	
 
 func add_message(speaker: String, text: String):
 	
@@ -48,8 +43,16 @@ func add_message(speaker: String, text: String):
 	
 func _on_MessageTimer_timeout():
 	# Automatically add the next line from the conversation
-	if current_line_index < conversation.size():
-		add_message(conversation[current_line_index]["speaker"], conversation[current_line_index]["text"])
+	if current_line_index < tempConvo.size():
+		add_message(tempConvo[current_line_index]["speaker"], tempConvo[current_line_index]["text"])
 		current_line_index += 1
 	else:
 		$MessageTimer.stop()  # Stop timer if conversation ends
+		tempConvo = null
+		_KillMessage()
+
+func _KillMessage():
+	for i in 4:
+		await get_tree().create_timer(3).timeout
+		VboxContainer.get_child(0).queue_free()
+

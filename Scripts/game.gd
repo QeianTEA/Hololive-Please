@@ -8,8 +8,9 @@ var noMark : Texture = preload("res://Sprites/Documents/deniedstampmark.png")
 var paperCanBeYes = null
 var paperCanBeNo = null
 
-@onready var text_box = $Background/TextBoxU
+@export var text_box = Control
 
+var documentsToBeGiven: int
 
 
 @onready var blindsAnimation = $Background/Blinds/AnimationPlayer
@@ -39,6 +40,7 @@ var stampsAvailable = false
 func _ready():
 	stampsAvailable = false
 	stamp_close_button.disabled = true
+	documentsToBeGiven = 0
 
 func _physics_process(delta):
 	
@@ -76,6 +78,9 @@ func _physics_process(delta):
 	
 	
 
+
+func startConvo(convo):
+	text_box.start_conversation(convo)
 
 func add_paper(paper): #latests appear have the top count
 	paper_stack.append(paper)

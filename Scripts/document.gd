@@ -14,6 +14,7 @@ var newPosition = Vector2()
 @onready var sprite_2d = $Clipper/MainImages
 @onready var small_collider = $SmallCollider
 
+@export var gift = false
 var mouse_in = false
 var chossen = false
 var big
