@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://csu0d16ji8qcq"]
 
 [ext_resource type="Script" path="res://Scripts/document.gd" id="1_8muf6"]
-[ext_resource type="Texture2D" uid="uid://dsco44yt5d4bx" path="res://Temp/ID Card.png" id="2_rpm52"]
-[ext_resource type="Texture2D" uid="uid://dgj4pn5stht11" path="res://Temp/idcardsmol.png" id="3_8ncq0"]
-[ext_resource type="Texture2D" uid="uid://bdqkh7voiysm6" path="res://Sprites/Documents/Special/ID Card.png" id="5_5mmd5"]
+[ext_resource type="Texture2D" uid="uid://eyc3ce7yqrmm" path="res://Sprites/Documents/generic id.png" id="2_xm7nf"]
+[ext_resource type="Texture2D" uid="uid://brf607k670er" path="res://Sprites/Documents/generic id smol.png" id="3_n5da7"]
+[ext_resource type="FontFile" uid="uid://dn2kldfkn58tp" path="res://Fonts/bm_miniDocuments/BMmini.TTF" id="5_f045f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wei6o"]
 size = Vector2(40, 24)
@@ -13,16 +13,127 @@ collision_layer = 6
 input_pickable = true
 slide_on_ceiling = false
 script = ExtResource("1_8muf6")
-bigTextureScale = 2.5
-bigTexture = ExtResource("2_rpm52")
-smallTexture = ExtResource("3_8ncq0")
+bigTextureScale = 2.0
+bigTexture = ExtResource("2_xm7nf")
+smallTexture = ExtResource("3_n5da7")
+
+[node name="GiveText" type="Label" parent="."]
+visible = false
+offset_left = -35.0
+offset_top = -63.0
+offset_right = 5.0
+offset_bottom = -40.0
+scale = Vector2(1.74137, 1.74137)
+theme_override_fonts/font = ExtResource("5_f045f")
+text = "Give"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Clipper" type="Sprite2D" parent="."]
 clip_children = 1
 scale = Vector2(0.6656, 0.6656)
-texture = ExtResource("5_5mmd5")
+texture = ExtResource("2_xm7nf")
 
 [node name="MainImages" type="Sprite2D" parent="Clipper"]
+
+[node name="Node2D" type="Node2D" parent="Clipper"]
+visible = false
+scale = Vector2(1.5024, 1.5024)
+
+[node name="NameLalble" type="Label" parent="Clipper/Node2D"]
+offset_left = -11.0
+offset_top = -15.0
+offset_right = 129.0
+offset_bottom = 8.0
+scale = Vector2(0.385012, 0.385012)
+theme_override_colors/font_color = Color(0.345098, 0.372549, 0.4, 1)
+theme_override_fonts/font = ExtResource("5_f045f")
+text = "Lea Wateringcan"
+text_overrun_behavior = 1
+
+[node name="Name" type="TextureButton" parent="Clipper/Node2D/NameLalble"]
+layout_mode = 0
+offset_left = -7.97059
+offset_top = -3.98529
+offset_right = 32.0294
+offset_bottom = 36.0147
+scale = Vector2(5.40214, 0.566997)
+button_mask = 0
+
+[node name="Dob" type="Label" parent="Clipper/Node2D"]
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 106.0
+offset_bottom = 10.0
+scale = Vector2(0.354875, 0.354875)
+theme_override_colors/font_color = Color(0.345098, 0.372549, 0.4, 1)
+theme_override_fonts/font = ExtResource("5_f045f")
+text = "1/20/1999"
+text_overrun_behavior = 1
+
+[node name="Date" type="TextureButton" parent="Clipper/Node2D/Dob"]
+layout_mode = 0
+offset_top = -1.86313
+offset_right = 40.0
+offset_bottom = 38.1369
+scale = Vector2(2.44065, 0.395672)
+button_mask = 0
+
+[node name="From" type="Label" parent="Clipper/Node2D"]
+offset_top = 1.0
+offset_right = 110.0
+offset_bottom = 17.0
+scale = Vector2(0.354875, 0.354875)
+theme_override_colors/font_color = Color(0.345098, 0.372549, 0.4, 1)
+theme_override_fonts/font = ExtResource("5_f045f")
+text = "Crosscode"
+text_overrun_behavior = 1
+
+[node name="Date" type="TextureButton" parent="Clipper/Node2D/From"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 45.0
+offset_bottom = 38.0
+scale = Vector2(2.44065, 0.395672)
+button_mask = 0
+
+[node name="DateLable" type="Label" parent="Clipper/Node2D"]
+offset_left = -1.0
+offset_top = 7.0
+offset_right = 109.0
+offset_bottom = 23.0
+scale = Vector2(0.354875, 0.354875)
+theme_override_colors/font_color = Color(0.345098, 0.372549, 0.4, 1)
+theme_override_fonts/font = ExtResource("5_f045f")
+text = "1/20/1999"
+text_overrun_behavior = 1
+
+[node name="Date" type="TextureButton" parent="Clipper/Node2D/DateLable"]
+layout_mode = 0
+offset_top = -1.86313
+offset_right = 40.0
+offset_bottom = 38.1369
+scale = Vector2(2.44065, 0.395672)
+button_mask = 0
+
+[node name="Ranodm" type="Label" parent="Clipper/Node2D"]
+offset_left = -41.0
+offset_top = 16.0
+offset_right = 47.0
+offset_bottom = 32.0
+scale = Vector2(0.408698, 0.408698)
+theme_override_colors/font_color = Color(0.345098, 0.372549, 0.4, 1)
+theme_override_fonts/font = ExtResource("5_f045f")
+text = "1112312T"
+text_overrun_behavior = 1
+
+[node name="Date" type="TextureButton" parent="Clipper/Node2D/Ranodm"]
+layout_mode = 0
+offset_top = -1.86313
+offset_right = 40.0
+offset_bottom = 38.1369
+scale = Vector2(2.44065, 0.395672)
+button_mask = 0
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]
 visible = false

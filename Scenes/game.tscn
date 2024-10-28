@@ -223,8 +223,8 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_tc52k")
 
 [node name="NpcPaperGiver" type="Area2D" parent="Background"]
-position = Vector2(238, 320)
-scale = Vector2(4.87711, 0.821947)
+position = Vector2(238, 293)
+scale = Vector2(4.95203, 2.49174)
 collision_layer = 0
 collision_mask = 5
 
@@ -242,13 +242,12 @@ visible = false
 position = Vector2(65, -129)
 
 [node name="Collisions" type="StaticBody2D" parent="Background"]
-visible = false
 collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/Collisions"]
 position = Vector2(449.079, 132.964)
-scale = Vector2(18.3317, 20.6291)
+scale = Vector2(18.551, 11.7978)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/Collisions"]
@@ -272,8 +271,8 @@ scale = Vector2(1.02427, 34.694)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="NpcCollider" type="CollisionShape2D" parent="Background/Collisions"]
-position = Vector2(238, 320)
-scale = Vector2(9.20123, 3.67956)
+position = Vector2(238, 278)
+scale = Vector2(9.16718, 9.52943)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="Bg" type="Sprite2D" parent="Background"]

@@ -1,44 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy3q0q3f1c4rv"]
+[gd_scene load_steps=7 format=3 uid="uid://dy3q0q3f1c4rv"]
 
 [ext_resource type="Script" path="res://Scripts/document.gd" id="1_orax3"]
 [ext_resource type="Texture2D" uid="uid://c4jxl63wswp4s" path="res://Sprites/Documents/EntryTicket smol.png" id="3_hkowy"]
+[ext_resource type="Texture2D" uid="uid://kfkv0omsoo0n" path="res://Sprites/Documents/Special/Entry Ticket Template Sample.png" id="4_5b3nt"]
 [ext_resource type="Texture2D" uid="uid://wpolil7dapgs" path="res://Sprites/Documents/Entry Ticket Template.png" id="4_ajlss"]
-[ext_resource type="FontFile" uid="uid://dn2kldfkn58tp" path="res://Fonts/bm_miniDocuments/BMmini.TTF" id="5_4bjfv"]
+[ext_resource type="FontFile" uid="uid://dn2kldfkn58tp" path="res://Fonts/bm_miniDocuments/BMmini.TTF" id="4_etu2w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wei6o"]
 size = Vector2(51, 46)
 
-[node name="Document" type="CharacterBody2D" node_paths=PackedStringArray("giveText", "labels") groups=["Papers"]]
+[node name="Document" type="CharacterBody2D" groups=["Papers"]]
 collision_layer = 6
 input_pickable = true
 slide_on_ceiling = false
 platform_on_leave = 2
 script = ExtResource("1_orax3")
-bigTextureScale = 1.5
+bigTextureScale = 2.0
 bigTexture = ExtResource("4_ajlss")
 smallTexture = ExtResource("3_hkowy")
-giveText = NodePath("Clipper/Labels/GiveText")
-labels = NodePath("Clipper/Labels")
+
+[node name="GiveText" type="Label" parent="."]
+visible = false
+offset_left = -35.0
+offset_top = -63.0
+offset_right = 5.0
+offset_bottom = -40.0
+scale = Vector2(1.74137, 1.74137)
+theme_override_fonts/font = ExtResource("4_etu2w")
+text = "Give"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Clipper" type="Sprite2D" parent="."]
 clip_children = 1
-texture = ExtResource("4_ajlss")
+texture = ExtResource("4_5b3nt")
 
 [node name="MainImages" type="Sprite2D" parent="Clipper"]
 
-[node name="Labels" type="Node2D" parent="Clipper"]
+[node name="Node2D" type="Node2D" parent="Clipper"]
+visible = false
+scale = Vector2(1.5024, 1.5024)
 
-[node name="DateLable" type="Label" parent="Clipper/Labels"]
-offset_left = -25.0
-offset_top = 41.0
-offset_right = 73.0
-offset_bottom = 57.0
-scale = Vector2(0.525158, 0.525158)
-theme_override_fonts/font = ExtResource("5_4bjfv")
+[node name="DateLable" type="Label" parent="Clipper/Node2D"]
+offset_left = -15.9744
+offset_top = 27.2896
+offset_right = 82.0256
+offset_bottom = 43.2896
+scale = Vector2(0.329016, 0.329016)
+theme_override_fonts/font = ExtResource("4_etu2w")
 text = "1/20/1999"
 horizontal_alignment = 1
 
-[node name="Date" type="TextureButton" parent="Clipper/Labels/DateLable"]
+[node name="Date" type="TextureButton" parent="Clipper/Node2D/DateLable"]
 layout_mode = 0
 offset_top = -1.86313
 offset_right = 40.0
@@ -46,19 +59,19 @@ offset_bottom = 38.1369
 scale = Vector2(2.44065, 0.395672)
 button_mask = 0
 
-[node name="NameLalble" type="Label" parent="Clipper/Labels"]
-offset_left = -50.0
-offset_top = -20.0
-offset_right = 149.0
-offset_bottom = 3.0
-scale = Vector2(0.501845, 0.501845)
+[node name="NameLalble" type="Label" parent="Clipper/Node2D"]
+offset_left = -33.28
+offset_top = -13.312
+offset_right = 165.72
+offset_bottom = 9.688
+scale = Vector2(0.332391, 0.317795)
 theme_override_colors/font_color = Color(0.290196, 0.470588, 0.662745, 1)
-theme_override_fonts/font = ExtResource("5_4bjfv")
+theme_override_fonts/font = ExtResource("4_etu2w")
 text = "Lea Wateringcan"
 horizontal_alignment = 1
 text_overrun_behavior = 1
 
-[node name="Name" type="TextureButton" parent="Clipper/Labels/NameLalble"]
+[node name="Name" type="TextureButton" parent="Clipper/Node2D/NameLalble"]
 layout_mode = 0
 offset_left = -7.97059
 offset_top = -3.98529
@@ -66,17 +79,6 @@ offset_right = 32.0294
 offset_bottom = 36.0147
 scale = Vector2(5.40214, 0.566997)
 button_mask = 0
-
-[node name="GiveText" type="Label" parent="Clipper/Labels"]
-offset_left = -12.0
-offset_top = -36.0
-offset_right = 28.0
-offset_bottom = -13.0
-scale = Vector2(0.58513, 0.58513)
-theme_override_fonts/font = ExtResource("5_4bjfv")
-text = "Give"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]
 visible = false

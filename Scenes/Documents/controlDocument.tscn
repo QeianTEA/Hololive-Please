@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5g8syjplcbf"]
+
+[ext_resource type="FontFile" uid="uid://dn2kldfkn58tp" path="res://Fonts/bm_miniDocuments/BMmini.TTF" id="1_6g55n"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -25.0
+offset_top = 41.0
+offset_right = 15.0
+offset_bottom = 81.0
+
+[node name="DateLable" type="Label" parent="."]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 16.0
+scale = Vector2(0.525158, 0.525158)
+theme_override_fonts/font = ExtResource("1_6g55n")
+text = "1/20/1999"
+horizontal_alignment = 1
+
+[node name="Date" type="TextureButton" parent="DateLable"]
+layout_mode = 0
+offset_top = -1.86313
+offset_right = 40.0
+offset_bottom = 38.1369
+scale = Vector2(2.44065, 0.395672)
+button_mask = 0
+
+[node name="NameLalble" type="Label" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 174.0
+offset_bottom = -38.0
+scale = Vector2(0.501845, 0.501845)
+theme_override_colors/font_color = Color(0.290196, 0.470588, 0.662745, 1)
+theme_override_fonts/font = ExtResource("1_6g55n")
+text = "Lea Wateringcan"
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Name" type="TextureButton" parent="NameLalble"]
+layout_mode = 0
+offset_left = -7.97059
+offset_top = -3.98529
+offset_right = 32.0294
+offset_bottom = 36.0147
+scale = Vector2(5.40214, 0.566997)
+button_mask = 0
+
+[node name="GiveText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -77.0
+offset_right = 53.0
+offset_bottom = -54.0
+scale = Vector2(0.58513, 0.58513)
+theme_override_fonts/font = ExtResource("1_6g55n")
+text = "Give"
+horizontal_alignment = 1
+vertical_alignment = 1
