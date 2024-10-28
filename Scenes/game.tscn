@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqlku2u04uc8n"]
+[gd_scene load_steps=29 format=3 uid="uid://dqlku2u04uc8n"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_jgtvi"]
 [ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="2_fp7rf"]
@@ -50,6 +50,8 @@ _data = {
 "BlindsAnim": SubResource("Animation_nf0qn"),
 "RESET": SubResource("Animation_rggy6")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85wab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptmwa"]
 size = Vector2(49.2131, 15.1278)
@@ -192,7 +194,7 @@ size = Vector2(33, 18.5)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("text_box")]
 script = ExtResource("1_jgtvi")
-text_box = NodePath("Background/TextBoxU")
+text_box = NodePath("TextBoxU")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -220,8 +222,19 @@ position = Vector2(450, 67)
 scale = Vector2(3, 3)
 texture = ExtResource("6_tc52k")
 
+[node name="NpcPaperGiver" type="Area2D" parent="Background"]
+position = Vector2(238, 320)
+scale = Vector2(4.87711, 0.821947)
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/NpcPaperGiver"]
+scale = Vector2(1.9177, 1.9177)
+shape = SubResource("RectangleShape2D_85wab")
+
 [node name="paper_size_changer" parent="Background" instance=ExtResource("7_j57od")]
 position = Vector2(138, 446)
+collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Background/paper_size_changer" index="0"]
@@ -352,13 +365,6 @@ shape = SubResource("RectangleShape2D_u4gc4")
 [node name="NoMarker" type="Marker2D" parent="Background/Stampbarmain/StampNoArea"]
 position = Vector2(46.5, 14)
 
-[node name="TextBoxU" parent="Background" instance=ExtResource("12_n0oyl")]
-z_index = 2
-offset_left = 92.0
-offset_top = 190.0
-offset_right = 393.0
-offset_bottom = 352.0
-
 [node name="Buttons" type="Node" parent="."]
 
 [node name="BlindsUpButton" type="Button" parent="Buttons"]
@@ -397,6 +403,13 @@ offset_bottom = 277.0
 scale = Vector2(3.5955, 14.5348)
 toggle_mode = true
 
+[node name="TextBoxU" parent="." instance=ExtResource("12_n0oyl")]
+z_index = 2
+offset_left = 92.0
+offset_top = 190.0
+offset_right = 393.0
+offset_bottom = 352.0
+
 [node name="ThrowOutDocuments" type="Marker2D" parent="."]
 position = Vector2(238, 373)
 scale = Vector2(0.8, 0.8)
@@ -405,6 +418,8 @@ scale = Vector2(0.8, 0.8)
 
 [node name="NPC" parent="." instance=ExtResource("15_dkk76")]
 
+[connection signal="body_entered" from="Background/NpcPaperGiver" to="." method="_on_npc_paper_giver_body_entered"]
+[connection signal="body_exited" from="Background/NpcPaperGiver" to="." method="_on_npc_paper_giver_body_exited"]
 [connection signal="pressed" from="Background/Stampbarmain/Stampbarno/Stampbarhead/StampNoButton" to="." method="_on_stamp_no_button_pressed"]
 [connection signal="pressed" from="Background/Stampbarmain/Stampbaryes/Stampbarhead2/StampYesButton" to="." method="_on_stamp_yes_button_pressed"]
 [connection signal="body_exited" from="Background/Stampbarmain/StampYesArea" to="." method="_on_stamp_yes_area_body_exited"]

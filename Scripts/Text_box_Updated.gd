@@ -1,7 +1,7 @@
 extends Control
 
 # Number of maximum lines on screen
-const MAX_LINES = 4
+const MAX_LINES = 3
 
 # Reference to VBoxContainer that will hold message lines
 @onready var VboxContainer = $VBoxContainer
@@ -52,7 +52,10 @@ func _on_MessageTimer_timeout():
 		_KillMessage()
 
 func _KillMessage():
-	for i in 4:
+	for i in VboxContainer.get_child_count():
 		await get_tree().create_timer(3).timeout
-		VboxContainer.get_child(0).queue_free()
+		if VboxContainer.get_children() != null:
+			VboxContainer.get_child(0).queue_free()
+		else:
+			return
 

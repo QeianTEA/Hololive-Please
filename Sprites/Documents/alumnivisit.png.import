@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl0v00xb6glxw"
-path="res://.godot/imported/gooba passport.png-351e2dd1373fb61a961ef59708fbad69.ctex"
+uid="uid://bon0jrjww2wuk"
+path="res://.godot/imported/alumnivisit.png-948ff1465208793e14f781bdffd8de9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Documents/Special/gooba passport.png"
-dest_files=["res://.godot/imported/gooba passport.png-351e2dd1373fb61a961ef59708fbad69.ctex"]
+source_file="res://Sprites/Documents/alumnivisit.png"
+dest_files=["res://.godot/imported/alumnivisit.png-948ff1465208793e14f781bdffd8de9c.ctex"]
 
 [params]
 

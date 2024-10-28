@@ -3,6 +3,8 @@ extends Node2D
 var paper_stack = []
 #const paper_scene = preload("res://Scenes/Documents/document.tscn") #test
 
+var NPCobject: PackedScene = preload("res://Scenes/npc.tscn")
+
 var yesMark : Texture = preload("res://Sprites/Documents/allowedstampmark.png")
 var noMark : Texture = preload("res://Sprites/Documents/deniedstampmark.png")
 var paperCanBeYes = null
@@ -11,6 +13,16 @@ var paperCanBeNo = null
 @export var text_box = Control
 
 var documentsToBeGiven: int
+var stamped: bool
+var approved: bool
+
+var reason: String
+
+var inspectMode: bool
+
+
+
+@onready var npc_collider = $Background/Collisions/NpcCollider
 
 
 @onready var blindsAnimation = $Background/Blinds/AnimationPlayer
@@ -41,9 +53,16 @@ func _ready():
 	stampsAvailable = false
 	stamp_close_button.disabled = true
 	documentsToBeGiven = 0
+	stamped = false
 
 func _physics_process(delta):
 	
+	# NPC stuff
+	
+	if documentsToBeGiven > 0 and !stamped:
+		npc_collider.disabled = false  #closed to give
+	else:
+		npc_collider.disabled = true   #open to give
 	
 	
 	#STAMPS
@@ -78,6 +97,9 @@ func _physics_process(delta):
 	
 	
 
+func sendAnother():
+	var npc= NPCobject.instantiate()
+	add_child(npc)
 
 func startConvo(convo):
 	text_box.start_conversation(convo)
@@ -88,12 +110,13 @@ func add_paper(paper): #latests appear have the top count
 	var count = 0
 	for p in paper_stack:
 		p.z_index = count
-		
 		count += 1
+
 
 func push_paper_to_top(paper):
 	paper_stack.erase(paper)
-	add_paper(paper)
+	if !stamped:
+		add_paper(paper)
 
 
 func _on_blinds_button_pressed():
@@ -127,6 +150,10 @@ func _on_stamp_no_button_pressed():
 	stamp_noAnimation.play("StampGoDown")
 	if paperCanBeNo != null and paperCanBeNo.canBeStamped:
 		print("print it out baby")
+		if !stamped:
+			stamped = true
+			approved = false
+		
 		var mark_instance = Sprite2D.new()
 		mark_instance.texture = noMark
 		mark_instance.scale = Vector2(1.3,1.3)
@@ -139,6 +166,10 @@ func _on_stamp_yes_button_pressed():
 	stamp_yesAnimation.play("StampYes")
 	if paperCanBeYes != null and paperCanBeYes.canBeStamped:
 		print("print it out baby")
+		if !stamped:
+			stamped = true
+			approved = true
+		
 		var mark_instance = Sprite2D.new()
 		mark_instance.texture = yesMark
 		mark_instance.scale = Vector2(1.3,1.3)
@@ -154,3 +185,13 @@ func _on_stamp_no_area_body_exited(body):
 	if body == paperCanBeNo:
 		paperCanBeNo = null
 		print("no more")
+
+
+func _on_npc_paper_giver_body_entered(body):
+	body.givable = true
+
+
+
+func _on_npc_paper_giver_body_exited(body):
+	body.givable = false
+
