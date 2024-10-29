@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dlvuu6v0kewg3"
+path="res://.godot/imported/HoloCon 1999 Victory Theme.wav-6c086f3ca1d43eaa06526aca7e71cc8e.sample"
+
+[deps]
+
+source_file="res://SFX/Music/HoloCon 1999 Victory Theme.wav"
+dest_files=["res://.godot/imported/HoloCon 1999 Victory Theme.wav-6c086f3ca1d43eaa06526aca7e71cc8e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

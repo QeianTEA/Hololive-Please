@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dqlku2u04uc8n"]
+[gd_scene load_steps=33 format=3 uid="uid://dqlku2u04uc8n"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_jgtvi"]
 [ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="2_fp7rf"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://buh4u7weqorkj" path="res://Sprites/Table/stampbarhead.png" id="9_tv1nb"]
 [ext_resource type="Texture2D" uid="uid://o30ahqjbkdmk" path="res://Sprites/Table/stampbarmain.png" id="10_eoqhc"]
 [ext_resource type="Texture2D" uid="uid://c4oogeocm730c" path="res://Sprites/Table/stampbarbottom.png" id="11_0hnxr"]
+[ext_resource type="Texture2D" uid="uid://ckn7odurr65ff" path="res://Sprites/Characters/MapSprites/CROWD-LEFT/CROWD-LEFT_00219.png" id="12_bnma3"]
+[ext_resource type="Texture2D" uid="uid://bfls6s7dmtwq5" path="res://Sprites/Characters/MapSprites/CROWD-RIGHT/CROWD-RIGHT_00000.png" id="12_gxch3"]
 [ext_resource type="PackedScene" uid="uid://r7olgcly6xii" path="res://Scenes/Text_box_Updated.tscn" id="12_n0oyl"]
 [ext_resource type="PackedScene" uid="uid://bga50g7bl7dbq" path="res://Scenes/npc.tscn" id="15_dkk76"]
 
@@ -192,6 +194,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4gc4"]
 size = Vector2(33, 18.5)
 
+[sub_resource type="InputEventKey" id="InputEventKey_d1df8"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_txe40"]
+events = [SubResource("InputEventKey_d1df8")]
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("text_box")]
 script = ExtResource("1_jgtvi")
 text_box = NodePath("TextBoxU")
@@ -223,6 +233,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_tc52k")
 
 [node name="NpcPaperGiver" type="Area2D" parent="Background"]
+visible = false
 position = Vector2(238, 293)
 scale = Vector2(4.95203, 2.49174)
 collision_layer = 0
@@ -242,6 +253,7 @@ visible = false
 position = Vector2(65, -129)
 
 [node name="Collisions" type="StaticBody2D" parent="Background"]
+visible = false
 collision_layer = 5
 collision_mask = 5
 
@@ -364,6 +376,20 @@ shape = SubResource("RectangleShape2D_u4gc4")
 [node name="NoMarker" type="Marker2D" parent="Background/Stampbarmain/StampNoArea"]
 position = Vector2(46.5, 14)
 
+[node name="NpcWalker" type="Sprite2D" parent="Background"]
+
+[node name="NpcWalk" type="AnimationPlayer" parent="Background/NpcWalker"]
+
+[node name="CrowdLeft" type="Sprite2D" parent="Background"]
+position = Vector2(437, 332)
+scale = Vector2(2.91028, 3.08601)
+texture = ExtResource("12_bnma3")
+
+[node name="CrowdRight" type="Sprite2D" parent="Background"]
+position = Vector2(459, 333)
+scale = Vector2(2.91028, 3.08601)
+texture = ExtResource("12_gxch3")
+
 [node name="Buttons" type="Node" parent="."]
 
 [node name="BlindsUpButton" type="Button" parent="Buttons"]
@@ -402,6 +428,21 @@ offset_bottom = 277.0
 scale = Vector2(3.5955, 14.5348)
 toggle_mode = true
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 859.0
+offset_top = 634.0
+offset_right = 899.0
+offset_bottom = 674.0
+toggle_mode = true
+shortcut = SubResource("Shortcut_txe40")
+
+[node name="InspectionMode" type="Panel" parent="TextureButton"]
+visible = false
+offset_left = -859.0
+offset_top = -634.0
+offset_right = 43.0
+offset_bottom = 41.0
+
 [node name="TextBoxU" parent="." instance=ExtResource("12_n0oyl")]
 z_index = 2
 offset_left = 92.0
@@ -427,5 +468,6 @@ scale = Vector2(0.8, 0.8)
 [connection signal="pressed" from="Buttons/BlindsDownButton" to="." method="_on_blinds_down_button_pressed"]
 [connection signal="pressed" from="Buttons/StampOpenButton" to="." method="_on_stamp_open_button_pressed"]
 [connection signal="pressed" from="Buttons/StampCloseButton" to="." method="_on_stamp_close_button_pressed"]
+[connection signal="toggled" from="TextureButton" to="." method="_on_inspect_button_toggled"]
 
 [editable path="Background/paper_size_changer"]

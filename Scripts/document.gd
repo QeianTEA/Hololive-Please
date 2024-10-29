@@ -17,12 +17,18 @@ var newPosition = Vector2()
 @onready var control = $Clipper/Node2D
 @onready var give_text = $GiveText
 
+@export var id : bool
+@export var ticket: bool
 @export var gift = false
 var mouse_in = false
 var chossen = false
 var big: bool
 var givable: bool
 
+var gameScript
+
+func _ready():
+	gameScript = get_parent()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -42,10 +48,31 @@ func _input(event):
 		if dragging:
 			newPosition = get_viewport().get_mouse_position() - draggingDistance * dir
 
-var readyToGo = false
-
 func _physics_process(delta):
+	
+	if gameScript.inspectMode:
+		if ticket:
+			$Clipper/Node2D/DateLable/Date.disabled = false
+			$Clipper/Node2D/NameLalble/Name.disabled = false
 		
+		if id:
+			$Clipper/Node2D/NameLalble/Name.disabled = false
+			$Clipper/Node2D/Dob/dob.disabled = false
+			$Clipper/Node2D/From/from.disabled = false
+			$Clipper/Node2D/DateLable/Date.disabled = false
+			$Clipper/Node2D/Ranodm/random.disabled = false
+	else :
+		if ticket:
+			$Clipper/Node2D/DateLable/Date.disabled = true
+			$Clipper/Node2D/NameLalble/Name.disabled = true
+		
+		if id:
+			$Clipper/Node2D/NameLalble/Name.disabled = true
+			$Clipper/Node2D/Dob/dob.disabled = true
+			$Clipper/Node2D/From/from.disabled = true
+			$Clipper/Node2D/DateLable/Date.disabled = true
+			$Clipper/Node2D/Ranodm/random.disabled = true
+	
 	if dragging:
 		velocity = (newPosition - position) * Vector2(50, 50)
 		move_and_slide()

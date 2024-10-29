@@ -99,6 +99,7 @@ func _physics_process(delta):
 
 func sendAnother():
 	var npc= NPCobject.instantiate()
+	await get_tree().create_timer(3).timeout
 	add_child(npc)
 
 func startConvo(convo):
@@ -156,7 +157,7 @@ func _on_stamp_no_button_pressed():
 		
 		var mark_instance = Sprite2D.new()
 		mark_instance.texture = noMark
-		mark_instance.scale = Vector2(1.3,1.3)
+		mark_instance.scale = Vector2(1.1,1.1)
 		mark_instance.position = paperCanBeNo.to_local(no_marker.get_global_position())
 		paperCanBeNo.clipper.add_child(mark_instance)  # Add the mark to the scene
 
@@ -172,7 +173,7 @@ func _on_stamp_yes_button_pressed():
 		
 		var mark_instance = Sprite2D.new()
 		mark_instance.texture = yesMark
-		mark_instance.scale = Vector2(1.3,1.3)
+		mark_instance.scale = Vector2(1.1,1.1)
 		mark_instance.position = paperCanBeYes.to_local(yes_marker.get_global_position())
 		paperCanBeYes.clipper.add_child(mark_instance)  # Add the mark to the scene
 
@@ -195,3 +196,12 @@ func _on_npc_paper_giver_body_entered(body):
 func _on_npc_paper_giver_body_exited(body):
 	body.givable = false
 
+
+
+func _on_inspect_button_toggled(toggled_on):
+	if toggled_on:
+		inspectMode = true
+		$TextureButton/InspectionMode.visible = true
+	else:
+		inspectMode = false
+		$TextureButton/InspectionMode.visible = false

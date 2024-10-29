@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy3q0q3f1c4rv"]
+[gd_scene load_steps=8 format=3 uid="uid://dy3q0q3f1c4rv"]
 
 [ext_resource type="Script" path="res://Scripts/document.gd" id="1_orax3"]
 [ext_resource type="Texture2D" uid="uid://c4jxl63wswp4s" path="res://Sprites/Documents/EntryTicket smol.png" id="3_hkowy"]
 [ext_resource type="Texture2D" uid="uid://kfkv0omsoo0n" path="res://Sprites/Documents/Special/Entry Ticket Template Sample.png" id="4_5b3nt"]
 [ext_resource type="Texture2D" uid="uid://wpolil7dapgs" path="res://Sprites/Documents/Entry Ticket Template.png" id="4_ajlss"]
 [ext_resource type="FontFile" uid="uid://dn2kldfkn58tp" path="res://Fonts/bm_miniDocuments/BMmini.TTF" id="4_etu2w"]
+[ext_resource type="Texture2D" uid="uid://caeb5l88r7q7a" path="res://Fonts/text box_outline.png" id="6_jc2em"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wei6o"]
 size = Vector2(51, 46)
 
 [node name="Document" type="CharacterBody2D" groups=["Papers"]]
+position = Vector2(422, 299)
 collision_layer = 6
 input_pickable = true
 slide_on_ceiling = false
@@ -18,6 +20,7 @@ script = ExtResource("1_orax3")
 bigTextureScale = 2.0
 bigTexture = ExtResource("4_ajlss")
 smallTexture = ExtResource("3_hkowy")
+ticket = true
 
 [node name="GiveText" type="Label" parent="."]
 visible = false
@@ -36,9 +39,9 @@ clip_children = 1
 texture = ExtResource("4_5b3nt")
 
 [node name="MainImages" type="Sprite2D" parent="Clipper"]
+texture = ExtResource("4_ajlss")
 
 [node name="Node2D" type="Node2D" parent="Clipper"]
-visible = false
 scale = Vector2(1.5024, 1.5024)
 
 [node name="DateLable" type="Label" parent="Clipper/Node2D"]
@@ -52,12 +55,15 @@ text = "1/20/1999"
 horizontal_alignment = 1
 
 [node name="Date" type="TextureButton" parent="Clipper/Node2D/DateLable"]
-layout_mode = 0
+modulate = Color(1, 0, 0, 1)
 offset_top = -1.86313
 offset_right = 40.0
 offset_bottom = 38.1369
 scale = Vector2(2.44065, 0.395672)
-button_mask = 0
+toggle_mode = true
+texture_pressed = ExtResource("6_jc2em")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="NameLalble" type="Label" parent="Clipper/Node2D"]
 offset_left = -33.28
@@ -72,13 +78,15 @@ horizontal_alignment = 1
 text_overrun_behavior = 1
 
 [node name="Name" type="TextureButton" parent="Clipper/Node2D/NameLalble"]
-layout_mode = 0
-offset_left = -7.97059
-offset_top = -3.98529
-offset_right = 32.0294
-offset_bottom = 36.0147
-scale = Vector2(5.40214, 0.566997)
-button_mask = 0
+modulate = Color(1, 0, 0, 1)
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 34.0
+offset_bottom = 36.0
+scale = Vector2(5.05951, 0.566997)
+toggle_mode = true
+texture_pressed = ExtResource("6_jc2em")
+stretch_mode = 0
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]
 visible = false

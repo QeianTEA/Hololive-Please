@@ -53,9 +53,12 @@ func _on_MessageTimer_timeout():
 
 func _KillMessage():
 	for i in VboxContainer.get_child_count():
-		await get_tree().create_timer(3).timeout
-		if VboxContainer.get_children() != null:
-			VboxContainer.get_child(0).queue_free()
+		if tempConvo == null:
+			await get_tree().create_timer(3).timeout
+			if VboxContainer.get_children() != null:
+				VboxContainer.get_child(0).queue_free()
+			else:
+				return
 		else:
 			return
 

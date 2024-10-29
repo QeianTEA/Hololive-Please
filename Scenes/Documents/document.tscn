@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://csu0d16ji8qcq"]
+[gd_scene load_steps=7 format=3 uid="uid://csu0d16ji8qcq"]
 
 [ext_resource type="Script" path="res://Scripts/document.gd" id="1_8muf6"]
 [ext_resource type="Texture2D" uid="uid://eyc3ce7yqrmm" path="res://Sprites/Documents/generic id.png" id="2_xm7nf"]
 [ext_resource type="Texture2D" uid="uid://brf607k670er" path="res://Sprites/Documents/generic id smol.png" id="3_n5da7"]
 [ext_resource type="FontFile" uid="uid://dn2kldfkn58tp" path="res://Fonts/bm_miniDocuments/BMmini.TTF" id="5_f045f"]
+[ext_resource type="Texture2D" uid="uid://caeb5l88r7q7a" path="res://Fonts/text box_outline.png" id="5_x122n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wei6o"]
 size = Vector2(40, 24)
@@ -16,6 +17,8 @@ script = ExtResource("1_8muf6")
 bigTextureScale = 2.0
 bigTexture = ExtResource("2_xm7nf")
 smallTexture = ExtResource("3_n5da7")
+canBeStamped = false
+id = true
 
 [node name="GiveText" type="Label" parent="."]
 visible = false
@@ -52,13 +55,16 @@ text = "Lea Wateringcan"
 text_overrun_behavior = 1
 
 [node name="Name" type="TextureButton" parent="Clipper/Node2D/NameLalble"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = -7.97059
 offset_top = -3.98529
 offset_right = 32.0294
 offset_bottom = 36.0147
 scale = Vector2(5.40214, 0.566997)
-button_mask = 0
+toggle_mode = true
+texture_pressed = ExtResource("5_x122n")
+stretch_mode = 0
 
 [node name="Dob" type="Label" parent="Clipper/Node2D"]
 offset_left = -1.0
@@ -71,13 +77,16 @@ theme_override_fonts/font = ExtResource("5_f045f")
 text = "1/20/1999"
 text_overrun_behavior = 1
 
-[node name="Date" type="TextureButton" parent="Clipper/Node2D/Dob"]
+[node name="dob" type="TextureButton" parent="Clipper/Node2D/Dob"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_top = -1.86313
 offset_right = 40.0
 offset_bottom = 38.1369
 scale = Vector2(2.44065, 0.395672)
-button_mask = 0
+toggle_mode = true
+texture_pressed = ExtResource("5_x122n")
+stretch_mode = 0
 
 [node name="From" type="Label" parent="Clipper/Node2D"]
 offset_top = 1.0
@@ -89,13 +98,16 @@ theme_override_fonts/font = ExtResource("5_f045f")
 text = "Crosscode"
 text_overrun_behavior = 1
 
-[node name="Date" type="TextureButton" parent="Clipper/Node2D/From"]
+[node name="from" type="TextureButton" parent="Clipper/Node2D/From"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_top = -2.0
 offset_right = 45.0
 offset_bottom = 38.0
 scale = Vector2(2.44065, 0.395672)
-button_mask = 0
+toggle_mode = true
+texture_pressed = ExtResource("5_x122n")
+stretch_mode = 0
 
 [node name="DateLable" type="Label" parent="Clipper/Node2D"]
 offset_left = -1.0
@@ -109,12 +121,15 @@ text = "1/20/1999"
 text_overrun_behavior = 1
 
 [node name="Date" type="TextureButton" parent="Clipper/Node2D/DateLable"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_top = -1.86313
 offset_right = 40.0
 offset_bottom = 38.1369
 scale = Vector2(2.44065, 0.395672)
-button_mask = 0
+toggle_mode = true
+texture_pressed = ExtResource("5_x122n")
+stretch_mode = 0
 
 [node name="Ranodm" type="Label" parent="Clipper/Node2D"]
 offset_left = -41.0
@@ -127,13 +142,16 @@ theme_override_fonts/font = ExtResource("5_f045f")
 text = "1112312T"
 text_overrun_behavior = 1
 
-[node name="Date" type="TextureButton" parent="Clipper/Node2D/Ranodm"]
+[node name="random" type="TextureButton" parent="Clipper/Node2D/Ranodm"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_top = -1.86313
 offset_right = 40.0
 offset_bottom = 38.1369
 scale = Vector2(2.44065, 0.395672)
-button_mask = 0
+toggle_mode = true
+texture_pressed = ExtResource("5_x122n")
+stretch_mode = 0
 
 [node name="SmallCollider" type="CollisionShape2D" parent="."]
 visible = false
