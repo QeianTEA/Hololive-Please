@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c17lep5he462b" path="res://Sprites/Menu/bgfull.png" id="2_vm4s7"]
 [ext_resource type="Texture2D" uid="uid://dy1b5ou3gk2we" path="res://Sprites/Menu/bgbottom.png" id="3_3bx6d"]
 [ext_resource type="Texture2D" uid="uid://cxi7jtdoy3emm" path="res://Sprites/Menu/bgtop.png" id="4_4xxpm"]
+[ext_resource type="VideoStream" path="res://Videos/Introcustend.ogv" id="4_oxwbd"]
 [ext_resource type="Texture2D" uid="uid://c6rcw7nwv60fq" path="res://Sprites/Menu/start.png" id="5_ny4f6"]
 [ext_resource type="Texture2D" uid="uid://hsfcito2n1ep" path="res://Sprites/Menu/quit.png" id="6_crlu5"]
 [ext_resource type="Texture2D" uid="uid://dh6sp1ep66ha4" path="res://Sprites/Menu/option.png" id="7_wjlvw"]
@@ -15,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://8qywlhsjix84" path="res://Sprites/Menu/disclaimer.png" id="11_smlsi"]
 [ext_resource type="AudioStream" uid="uid://cusmbp6uupk4f" path="res://SFX/Music/HoloCon 1999 Main Theme.wav" id="12_oj3f1"]
 [ext_resource type="Texture2D" uid="uid://cok0wlrv2wew0" path="res://Sprites/Menu/bgmid.png" id="14_0veo5"]
-[ext_resource type="VideoStream" path="res://Videos/Intro_Cutscene.ogv" id="16_qwjns"]
 
 [sub_resource type="Animation" id="Animation_0um43"]
 resource_name = "MenuMain"
@@ -99,7 +99,7 @@ tracks/5/path = NodePath("Menu/MainLogo/AnimationPlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(4.7),
+"times": PackedFloat32Array(4.73),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["TitleBounce", -1, 1.0, false],
@@ -207,6 +207,10 @@ script = ExtResource("1_3wm8w")
 
 [node name="Test" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -500
+z_as_relative = false
 position = Vector2(450, 338)
 scale = Vector2(0.454, 0.454)
 texture = ExtResource("9_q2eg6")
@@ -227,7 +231,7 @@ offset_left = -5.0
 offset_top = -3.0
 offset_right = 907.0
 offset_bottom = 685.0
-stream = ExtResource("16_qwjns")
+stream = ExtResource("4_oxwbd")
 bus = &"Video"
 
 [node name="Menu" type="Node2D" parent="."]
@@ -244,15 +248,27 @@ libraries = {
 "": SubResource("AnimationLibrary_spuej")
 }
 
+[node name="Bgmid" type="Sprite2D" parent="Menu"]
+position = Vector2(451, 588.855)
+scale = Vector2(2.815, 2.815)
+texture = ExtResource("14_0veo5")
+
+[node name="Bgbottom" type="Sprite2D" parent="Menu"]
+position = Vector2(450, 651)
+scale = Vector2(2.815, 2.815)
+texture = ExtResource("3_3bx6d")
+region_rect = Rect2(0, 0, 320, 17)
+
+[node name="Bgtop" type="Sprite2D" parent="Menu"]
+position = Vector2(450, 503.855)
+scale = Vector2(2.815, 2.815)
+texture = ExtResource("4_4xxpm")
+
 [node name="Bgfull" type="Sprite2D" parent="Menu"]
+visible = false
 position = Vector2(450.35, 572.26)
 scale = Vector2(2.815, 2.815)
 texture = ExtResource("2_vm4s7")
-
-[node name="Metrostamp" type="Sprite2D" parent="Menu"]
-position = Vector2(450, 640)
-scale = Vector2(3, 3)
-texture = ExtResource("10_3itwg")
 
 [node name="Buttons" type="Node2D" parent="Menu"]
 
@@ -309,22 +325,15 @@ offset_bottom = 8.0
 theme_type_variation = &"FlatButton"
 icon = ExtResource("8_cy8rm")
 
+[node name="Metrostamp" type="Sprite2D" parent="Menu"]
+position = Vector2(450, 640)
+scale = Vector2(3, 3)
+texture = ExtResource("10_3itwg")
+
 [node name="Disclaimer" type="Sprite2D" parent="."]
 position = Vector2(450, 341)
 scale = Vector2(3, 3)
 texture = ExtResource("11_smlsi")
-
-[node name="Bgbottom" type="Sprite2D" parent="."]
-position = Vector2(-178, 493)
-texture = ExtResource("3_3bx6d")
-
-[node name="Bgtop" type="Sprite2D" parent="."]
-position = Vector2(-178, 467)
-texture = ExtResource("4_4xxpm")
-
-[node name="Bgmid" type="Sprite2D" parent="."]
-position = Vector2(-180, 525)
-texture = ExtResource("14_0veo5")
 
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="mouse_entered" from="Menu/Buttons/Start/StartB" to="." method="_on_button_mouse_entered" binds= [1]]
@@ -336,3 +345,4 @@ texture = ExtResource("14_0veo5")
 [connection signal="mouse_exited" from="Menu/Buttons/Credite/CreditB" to="." method="_on_button_mouse_exited" binds= [3]]
 [connection signal="mouse_entered" from="Menu/Buttons/Quit/QuitB" to="." method="_on_button_mouse_entered" binds= [4]]
 [connection signal="mouse_exited" from="Menu/Buttons/Quit/QuitB" to="." method="_on_button_mouse_exited" binds= [4]]
+[connection signal="pressed" from="Menu/Buttons/Quit/QuitB" to="." method="_on_quit_b_pressed"]

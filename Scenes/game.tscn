@@ -1,21 +1,344 @@
-[gd_scene load_steps=33 format=3 uid="uid://dqlku2u04uc8n"]
+[gd_scene load_steps=55 format=3 uid="uid://dqlku2u04uc8n"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_jgtvi"]
-[ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="2_fp7rf"]
+[ext_resource type="AudioStream" uid="uid://dhwmcyxag7ykw" path="res://SFX/Music/ambience.wav" id="2_4f8yc"]
+[ext_resource type="Texture2D" uid="uid://dxli1m62eagc" path="res://Sprites/Table/Table Newddd.png" id="2_c08wc"]
 [ext_resource type="PackedScene" uid="uid://bhs82fumcwpcg" path="res://Scenes/paper_getter.tscn" id="2_fr3k8"]
+[ext_resource type="Texture2D" uid="uid://drnw3n65enrud" path="res://Sprites/Table/clockthingsmol.png" id="3_dkyni"]
+[ext_resource type="AudioStream" uid="uid://c5nni88s0smag" path="res://SFX/stampbar-open.wav" id="3_hsb8t"]
 [ext_resource type="Texture2D" uid="uid://b26eivbei0ti0" path="res://Sprites/Table/Blinds.png" id="3_shhio"]
-[ext_resource type="Texture2D" uid="uid://ockqtyf763pb" path="res://Temp/mapQUICK.png" id="6_tc52k"]
+[ext_resource type="AudioStream" uid="uid://davnacnt0gosh" path="res://SFX/stampbar-close.wav" id="4_fllnp"]
+[ext_resource type="AudioStream" uid="uid://c08234neme270" path="res://SFX/stamp-down.wav" id="5_573c3"]
+[ext_resource type="AudioStream" uid="uid://bint0brbhynu8" path="res://SFX/curatin.mp3" id="6_3vh5r"]
 [ext_resource type="Texture2D" uid="uid://srvdm206717h" path="res://Sprites/Table/BG.png" id="6_vi3e4"]
+[ext_resource type="AudioStream" uid="uid://b04y4460uv8bj" path="res://SFX/curatin close.mp3" id="7_6hman"]
 [ext_resource type="PackedScene" uid="uid://bwdv2pctr3mr1" path="res://Scenes/paper_size_changer.tscn" id="7_j57od"]
 [ext_resource type="Texture2D" uid="uid://bdfi3ut320up6" path="res://Sprites/Table/stampbarno.png" id="8_d7t1i"]
 [ext_resource type="Texture2D" uid="uid://b47f0fof65pjq" path="res://Sprites/Table/stampbaryes.png" id="9_peo84"]
 [ext_resource type="Texture2D" uid="uid://buh4u7weqorkj" path="res://Sprites/Table/stampbarhead.png" id="9_tv1nb"]
+[ext_resource type="Texture2D" uid="uid://b7sivlp1pnvrt" path="res://Sprites/Characters/MapSprites/layer 2 (bottom).png" id="10_3ay5h"]
 [ext_resource type="Texture2D" uid="uid://o30ahqjbkdmk" path="res://Sprites/Table/stampbarmain.png" id="10_eoqhc"]
 [ext_resource type="Texture2D" uid="uid://c4oogeocm730c" path="res://Sprites/Table/stampbarbottom.png" id="11_0hnxr"]
+[ext_resource type="Texture2D" uid="uid://jml851m55345" path="res://Sprites/Characters/MapSprites/layer 1 (top).png" id="11_apdy6"]
+[ext_resource type="Texture2D" uid="uid://d0llvmsjv6k6i" path="res://Sprites/Characters/MapSprites/human idle 1/frame 2.png" id="11_gpu0n"]
 [ext_resource type="Texture2D" uid="uid://ckn7odurr65ff" path="res://Sprites/Characters/MapSprites/CROWD-LEFT/CROWD-LEFT_00219.png" id="12_bnma3"]
 [ext_resource type="Texture2D" uid="uid://bfls6s7dmtwq5" path="res://Sprites/Characters/MapSprites/CROWD-RIGHT/CROWD-RIGHT_00000.png" id="12_gxch3"]
 [ext_resource type="PackedScene" uid="uid://r7olgcly6xii" path="res://Scenes/Text_box_Updated.tscn" id="12_n0oyl"]
+[ext_resource type="Texture2D" uid="uid://ch7rbatljobui" path="res://Sprites/Characters/MapSprites/human walk/frame 1.png" id="14_g4418"]
 [ext_resource type="PackedScene" uid="uid://bga50g7bl7dbq" path="res://Scenes/npc.tscn" id="15_dkk76"]
+[ext_resource type="Texture2D" uid="uid://cgbam6jek8wws" path="res://Sprites/Characters/MapSprites/human walk/frame 2.png" id="15_ptiqo"]
+[ext_resource type="Texture2D" uid="uid://6y1eeqifwabm" path="res://Sprites/Characters/MapSprites/human walk/frame 3.png" id="16_0855h"]
+[ext_resource type="Texture2D" uid="uid://w5g610li4hm0" path="res://Sprites/Characters/MapSprites/props.png" id="16_h52ob"]
+[ext_resource type="Texture2D" uid="uid://7u7jbpjuy43o" path="res://Sprites/Characters/MapSprites/human walk/frame 4.png" id="17_t5d10"]
+[ext_resource type="Texture2D" uid="uid://dk75nu0wsi8v1" path="res://Sprites/Characters/MapSprites/human idle 2/frame 1.png" id="17_wgy7u"]
+[ext_resource type="Texture2D" uid="uid://bvqgmy38ojh0s" path="res://Sprites/Table/inspection button.png" id="30_yrcah"]
+
+[sub_resource type="Animation" id="Animation_416nd"]
+resource_name = "NPCwalk"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NpcWalker:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NpcWalker2:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NpcWalker:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(394, 108), Vector2(463, 128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NpcWalker2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(251, 98), Vector2(394, 108)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NpcWalker")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Walk", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NpcWalker2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Walk", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NpcWalker:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.7, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3.19835, 3.19835), Vector2(3.19835, 3.19835), Vector2(2.48472, 2.48472)]
+}
+
+[sub_resource type="Animation" id="Animation_wl8nx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NpcWalker:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NpcWalker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(394, 108)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NpcWalker2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(251, 98)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NpcWalker:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.198, 3.198)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NpcWalker3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(513, 131)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NpcWalker3:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.56187, 2.13734)]
+}
+
+[sub_resource type="Animation" id="Animation_giuau"]
+resource_name = "NpcYes"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NpcWalker3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 1.7, 10),
+"transitions": PackedFloat32Array(1, 1, 0.5, 2),
+"update": 0,
+"values": [Vector2(516, 133), Vector2(573, 106), Vector2(589, 105), Vector2(826.565, 111.605)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NpcWalker3:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.170755, 1),
+"update": 0,
+"values": [Vector2(3.56187, 2.13734), Vector2(3.19835, 3.19835)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NpcWalker3:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Walk"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NpcWalker3:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vqqig"]
+resource_name = "NpcNo"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NpcWalker3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7, 10),
+"transitions": PackedFloat32Array(1, 1, 0.5, 2),
+"update": 0,
+"values": [Vector2(458, 131), Vector2(411, 106), Vector2(375, 106), Vector2(147, -41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NpcWalker3:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.170755, 1),
+"update": 0,
+"values": [Vector2(3.56187, 2.13734), Vector2(3.19835, 3.19835)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NpcWalker3:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Walk"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NpcWalker3:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_724d7"]
+_data = {
+"NPCwalk": SubResource("Animation_416nd"),
+"NpcNo": SubResource("Animation_vqqig"),
+"NpcYes": SubResource("Animation_giuau"),
+"RESET": SubResource("Animation_wl8nx")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1aqy1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_gpu0n")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_g4418")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ptiqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0855h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_t5d10")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_nf0qn"]
 resource_name = "BlindsAnim"
@@ -205,6 +528,36 @@ events = [SubResource("InputEventKey_d1df8")]
 [node name="Game" type="Node2D" node_paths=PackedStringArray("text_box")]
 script = ExtResource("1_jgtvi")
 text_box = NodePath("TextBoxU")
+todaysDate = "12/09/1999"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_4f8yc")
+volume_db = -20.0
+autoplay = true
+mix_target = 1
+bus = &"Music"
+
+[node name="StampbarOpen" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_hsb8t")
+volume_db = -5.0
+
+[node name="StampbarClose" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_fllnp")
+volume_db = -5.0
+
+[node name="Stamp" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_573c3")
+volume_db = -5.0
+
+[node name="Curtain" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_3vh5r")
+volume_db = -10.0
+
+[node name="CurtainClose" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_6hman")
+volume_db = -10.0
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -212,7 +565,89 @@ text_box = NodePath("TextBoxU")
 z_index = -2
 position = Vector2(450, 408)
 scale = Vector2(3, 3)
-texture = ExtResource("2_fp7rf")
+texture = ExtResource("2_c08wc")
+
+[node name="Timeshort" type="Sprite2D" parent="Background/Table"]
+position = Vector2(-138, 12)
+rotation = -0.872665
+scale = Vector2(1, 0.893333)
+texture = ExtResource("3_dkyni")
+offset = Vector2(-2, -2.61194)
+
+[node name="BgMap" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(450, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("10_3ay5h")
+
+[node name="BgmAp3" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(450, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("16_h52ob")
+
+[node name="NpcWalkerAnimator" type="AnimationPlayer" parent="Background"]
+libraries = {
+"": SubResource("AnimationLibrary_724d7")
+}
+autoplay = "RESET"
+
+[node name="NpcYesNo" type="AnimationPlayer" parent="Background"]
+libraries = {
+"": SubResource("AnimationLibrary_724d7")
+}
+autoplay = "RESET"
+
+[node name="NpcWalker" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+position = Vector2(394, 108)
+scale = Vector2(3.198, 3.198)
+sprite_frames = SubResource("SpriteFrames_1aqy1")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="NpcWalker2" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+position = Vector2(251, 98)
+scale = Vector2(3.19835, 3.19835)
+sprite_frames = SubResource("SpriteFrames_1aqy1")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="NpcWalker3" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+position = Vector2(513, 131)
+scale = Vector2(3.56187, 2.13734)
+sprite_frames = SubResource("SpriteFrames_1aqy1")
+animation = &"Walk"
+autoplay = "Idle"
+flip_h = true
+
+[node name="Guard" type="Sprite2D" parent="Background"]
+position = Vector2(344, 33)
+scale = Vector2(2.91028, 3.08601)
+texture = ExtResource("17_wgy7u")
+flip_h = true
+
+[node name="Guard2" type="Sprite2D" parent="Background"]
+position = Vector2(295, 68)
+scale = Vector2(2.91028, 3.08601)
+texture = ExtResource("11_gpu0n")
+flip_h = true
+
+[node name="GuardKronii" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+position = Vector2(420, 79)
+scale = Vector2(3.19835, 3.19835)
+sprite_frames = SubResource("SpriteFrames_1aqy1")
+animation = &"Idle"
+frame_progress = 0.861859
+
+[node name="BgmAp2" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(450, 324)
+scale = Vector2(3, 3)
+texture = ExtResource("11_apdy6")
 
 [node name="Blinds" type="Sprite2D" parent="Background"]
 z_index = -2
@@ -226,12 +661,6 @@ libraries = {
 }
 autoplay = "BlindsAnim"
 
-[node name="MapQuick" type="Sprite2D" parent="Background"]
-z_index = -1
-position = Vector2(450, 67)
-scale = Vector2(3, 3)
-texture = ExtResource("6_tc52k")
-
 [node name="NpcPaperGiver" type="Area2D" parent="Background"]
 visible = false
 position = Vector2(238, 293)
@@ -244,7 +673,8 @@ scale = Vector2(1.9177, 1.9177)
 shape = SubResource("RectangleShape2D_85wab")
 
 [node name="paper_size_changer" parent="Background" instance=ExtResource("7_j57od")]
-position = Vector2(138, 446)
+position = Vector2(138, 589)
+scale = Vector2(1, 1.36)
 collision_layer = 0
 collision_mask = 4
 
@@ -263,8 +693,8 @@ scale = Vector2(18.551, 11.7978)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/Collisions"]
-position = Vector2(196, 632)
-scale = Vector2(9.5641, 18.0406)
+position = Vector2(230, 681)
+scale = Vector2(9.7641, 18.0406)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Background/Collisions"]
@@ -279,7 +709,7 @@ shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Background/Collisions"]
 position = Vector2(-5.99994, 410)
-scale = Vector2(1.02427, 34.694)
+scale = Vector2(3.53554, 40.2131)
 shape = SubResource("RectangleShape2D_ptmwa")
 
 [node name="NpcCollider" type="CollisionShape2D" parent="Background/Collisions"]
@@ -376,10 +806,6 @@ shape = SubResource("RectangleShape2D_u4gc4")
 [node name="NoMarker" type="Marker2D" parent="Background/Stampbarmain/StampNoArea"]
 position = Vector2(46.5, 14)
 
-[node name="NpcWalker" type="Sprite2D" parent="Background"]
-
-[node name="NpcWalk" type="AnimationPlayer" parent="Background/NpcWalker"]
-
 [node name="CrowdLeft" type="Sprite2D" parent="Background"]
 position = Vector2(437, 332)
 scale = Vector2(2.91028, 3.08601)
@@ -389,6 +815,13 @@ texture = ExtResource("12_bnma3")
 position = Vector2(459, 333)
 scale = Vector2(2.91028, 3.08601)
 texture = ExtResource("12_gxch3")
+
+[node name="TextBoxU" parent="." instance=ExtResource("12_n0oyl")]
+z_index = 2
+offset_left = 92.0
+offset_top = 190.0
+offset_right = 393.0
+offset_bottom = 352.0
 
 [node name="Buttons" type="Node" parent="."]
 
@@ -429,26 +862,24 @@ scale = Vector2(3.5955, 14.5348)
 toggle_mode = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 859.0
+offset_left = 857.0
 offset_top = 634.0
-offset_right = 899.0
-offset_bottom = 674.0
+offset_right = 900.0
+offset_bottom = 675.0
 toggle_mode = true
+action_mode = 0
 shortcut = SubResource("Shortcut_txe40")
+texture_normal = ExtResource("30_yrcah")
+stretch_mode = 0
 
 [node name="InspectionMode" type="Panel" parent="TextureButton"]
 visible = false
+show_behind_parent = true
+layout_mode = 0
 offset_left = -859.0
 offset_top = -634.0
 offset_right = 43.0
 offset_bottom = 41.0
-
-[node name="TextBoxU" parent="." instance=ExtResource("12_n0oyl")]
-z_index = 2
-offset_left = 92.0
-offset_top = 190.0
-offset_right = 393.0
-offset_bottom = 352.0
 
 [node name="ThrowOutDocuments" type="Marker2D" parent="."]
 position = Vector2(238, 373)

@@ -19,8 +19,9 @@ var approved: bool
 var reason: String
 
 var inspectMode: bool
+var inspectSelected = []
 
-
+@export var todaysDate: String
 
 @onready var npc_collider = $Background/Collisions/NpcCollider
 
@@ -41,7 +42,9 @@ var stampsAvailable = false
 @onready var stamp_no_area = $Background/Stampbarmain/StampNoArea
 @onready var stamp_yes_area = $Background/Stampbarmain/StampYesArea
 
+@onready var timeshort = $Background/Table/Timeshort
 
+var gameOver = false
 
 # Called when the node enters the scene tree for the first time
 #	for i in range(0, 2):
@@ -50,12 +53,24 @@ var stampsAvailable = false
 #		add_paper(paper)
 
 func _ready():
+	GlobalDocumentRandomizer.dateToday = todaysDate
 	stampsAvailable = false
 	stamp_close_button.disabled = true
 	documentsToBeGiven = 0
 	stamped = false
+	timeshort.rotation_degrees = -50
 
 func _physics_process(delta):
+	
+	#Clock
+	
+	timeshort.rotation += delta/120
+	if timeshort.rotation_degrees >= 222:
+		gameOver = true
+		print(gameOver)
+	
+	if gameOver and documentsToBeGiven <= 0:
+		GameOver()
 	
 	# NPC stuff
 	
@@ -65,7 +80,7 @@ func _physics_process(delta):
 		npc_collider.disabled = true   #open to give
 	
 	
-	#STAMPS
+	# STAMPS
 	
 	if stampsAvailable && stamp_no_area.has_overlapping_bodies():
 		var body = []
@@ -97,10 +112,31 @@ func _physics_process(delta):
 	
 	
 
+func GameOver():
+	gameOver = false
+
+# inspectSelected = [{ "data": "12/10/1999", "description": "date" }, { "data": "12/10/1999", "description": "today" }]
+
+func InspectionSelected():
+	if inspectSelected.get_child_count() > 2:
+		inspectSelected[0].queue_free()
+	
+
+func NPCapprovedornah(yea:bool):
+	if  yea:
+		await get_tree().create_timer(2).timeout
+		$Background/NpcYesNo.play("NpcYes")
+	else:
+		await get_tree().create_timer(2).timeout
+		$Background/NpcYesNo.play("NpcNo")
+
 func sendAnother():
-	var npc= NPCobject.instantiate()
-	await get_tree().create_timer(3).timeout
-	add_child(npc)
+	if !gameOver:
+		var npc = NPCobject.instantiate()
+		GlobalDocumentRandomizer.newNPC()
+		$Background/NpcWalkerAnimator.play("NPCwalk")
+		await get_tree().create_timer(2).timeout
+		add_child(npc)
 
 func startConvo(convo):
 	text_box.start_conversation(convo)
@@ -121,19 +157,22 @@ func push_paper_to_top(paper):
 
 
 func _on_blinds_button_pressed():
-		blinds_up_button.disabled = true
-		blinds_down_button.disabled = false
-		blindsAnimation.play("BlindsAnim")
+	$SFX/Curtain.play()
+	blinds_up_button.disabled = true
+	blinds_down_button.disabled = false
+	blindsAnimation.play("BlindsAnim")
 
 
 func _on_blinds_down_button_pressed():
-		blinds_down_button.disabled = true
-		stampsAvailable = false
-		blinds_up_button.disabled = false
-		blindsAnimation.play_backwards("BlindsAnim")
+	$SFX/CurtainClose.play()
+	blinds_down_button.disabled = true
+	stampsAvailable = false
+	blinds_up_button.disabled = false
+	blindsAnimation.play_backwards("BlindsAnim")
 
 
 func _on_stamp_open_button_pressed():
+	$SFX/StampbarOpen.play()
 	stamp_open_button.disabled = true
 	stampsAvailable = true
 	stamp_close_button.disabled = false
@@ -141,6 +180,7 @@ func _on_stamp_open_button_pressed():
 
 
 func _on_stamp_close_button_pressed():
+	$SFX/StampbarClose.play()
 	stamp_open_button.disabled = false
 	stampsAvailable = false
 	stamp_close_button.disabled = true
@@ -148,6 +188,7 @@ func _on_stamp_close_button_pressed():
 
 
 func _on_stamp_no_button_pressed():
+	$SFX/Stamp.play()
 	stamp_noAnimation.play("StampGoDown")
 	if paperCanBeNo != null and paperCanBeNo.canBeStamped:
 		print("print it out baby")
@@ -164,6 +205,7 @@ func _on_stamp_no_button_pressed():
 
 
 func _on_stamp_yes_button_pressed():
+	$SFX/Stamp.play()
 	stamp_yesAnimation.play("StampYes")
 	if paperCanBeYes != null and paperCanBeYes.canBeStamped:
 		print("print it out baby")
@@ -180,12 +222,10 @@ func _on_stamp_yes_button_pressed():
 func _on_stamp_yes_area_body_exited(body):
 		if body == paperCanBeYes:
 			paperCanBeYes = null
-			print("no more")
 
 func _on_stamp_no_area_body_exited(body):
 	if body == paperCanBeNo:
 		paperCanBeNo = null
-		print("no more")
 
 
 func _on_npc_paper_giver_body_entered(body):

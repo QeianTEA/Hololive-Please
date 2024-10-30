@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var draggingDistance
 var dir
-var dragging = false
+var dragging: bool :set = setDragging
 var newPosition = Vector2()
 
 @export var bigTextureScale = 1.0
@@ -25,10 +25,26 @@ var chossen = false
 var big: bool
 var givable: bool
 
+@export var faulty: bool
+@export var special: bool
+
 var gameScript
 
+
 func _ready():
+	await GlobalDocumentRandomizer.readyToRoll
 	gameScript = get_parent()
+	dragging = false
+	
+	if !special:
+		$Clipper/Node2D/NameLalble.text = GlobalDocumentRandomizer.npcName
+		if id:
+			$Clipper/Node2D/Dob.text = GlobalDocumentRandomizer.npcDob
+			$Clipper/Node2D/From.text = GlobalDocumentRandomizer.place
+			$Clipper/Node2D/DateLable.text = GlobalDocumentRandomizer.expiryDate
+			$Clipper/Node2D/Ranodm.text = GlobalDocumentRandomizer.barcode
+		if ticket:
+			$Clipper/Node2D/DateLable.text = GlobalDocumentRandomizer.RandomizeThis("date")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -40,7 +56,6 @@ func _input(event):
 		else:
 			dragging = false
 			chossen = false
-			
 		if event.is_released() && givable:
 			giveDocument()
 			
@@ -82,6 +97,16 @@ func _physics_process(delta):
 	else:
 		give_text.visible = false
 
+
+func setDragging(v : bool):
+	if dragging == v:
+		return
+	dragging = v
+	if v:
+		$Start.play()
+	else:
+		$end.play()
+	
 
 func giveDocument():
 	var gameScript = get_parent()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b04y4460uv8bj"
+path="res://.godot/imported/curatin close.mp3-6309b17af34a2f6f8db4a4fe3ee60162.mp3str"
+
+[deps]
+
+source_file="res://SFX/curatin close.mp3"
+dest_files=["res://.godot/imported/curatin close.mp3-6309b17af34a2f6f8db4a4fe3ee60162.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

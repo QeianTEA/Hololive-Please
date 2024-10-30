@@ -16,17 +16,15 @@ var can_be_deleted: bool
 var gameScript = Script
 @export var conversation = [
 	{"speaker": "Player", "text": "Your ticket."},
-	{"speaker": "NPC", "text": "Hello! Here's my ticket."},
-	{"speaker": "NPC", "text": "Nice weather today, isn’t it?"}
+	{"speaker": "NPC", "text": "Hello! Here's my ticket."}
 	]
 
-var convoApproved = [
+@export var convoApproved = [
 	{"speaker": "Player", "text": "Don't cause trouble."},
-	{"speaker": "NPC", "text": "Yeeeeaaa!!"},
-	{"speaker": "NPC", "text": "Holocon wait for me!"}
+	{"speaker": "NPC", "text": "Yeeeeaaa!!"}
 	]
 
-var convoDenied = [
+@export var convoDenied = [
 	{"speaker": "NPC", "text": "Huh? No..."},
 	{"speaker": "NPC", "text": "Stupid Scammers"}
 	]
@@ -36,14 +34,7 @@ func _ready():
 	documents.append(Document1)
 	documents.append(Document2)
 	gameScript = get_parent()
-	
-	if !specialGuest:
-		var number = randi_range(0,5)
-		match number:
-			0:
-				convoApproved = [{"speaker": "Player", "text": "Don't cause trouble."},]
-				
-	
+		
 	
 
 func _physics_process(delta):
@@ -52,9 +43,11 @@ func _physics_process(delta):
 			gameScript.startConvo(convoApproved)
 			goingBack = true
 			come.play_backwards("GoRight")
+			gameScript.NPCapprovedornah(true)
 		else:
 			come.play_backwards("EnterLeft")
 			goingBack = true
+			gameScript.NPCapprovedornah(false)
 			deniedReason()
 			
 			
@@ -63,7 +56,8 @@ func _physics_process(delta):
 		gameScript.stamped = false
 	
 	if can_be_deleted:
-		gameScript.sendAnother()
+		if gameScript.timeshort.rotation_degrees < 210:
+			gameScript.sendAnother()
 		queue_free()
 
 func deniedReason():

@@ -6,7 +6,6 @@ var skip
 var loadNextScene
 @onready var video_stream_player = $VideoStreamPlayer
 @onready var menu = $Menu
-
 @onready var start_b = $Menu/Buttons/Start/StartB
 @onready var option_b = $Menu/Buttons/Option/OptionB
 @onready var credit_b = $Menu/Buttons/Credite/CreditB
@@ -60,3 +59,7 @@ func _on_button_mouse_exited(number):
 
 func _on_video_stream_player_finished():
 	loadNextScene = true
+
+
+func _on_quit_b_pressed():
+	get_tree().quit()

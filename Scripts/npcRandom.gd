@@ -49,10 +49,14 @@ var clothes = []
 var hair = []
 
 var randomNum = 0
-
+var npcScript
 @export var randomColorRange = 150
 
 func _ready():
+	npcScript = get_parent()
+	
+	ConversationRandomizer()
+	
 	eyes.append(eye0)
 	eyes.append(eye1)
 	eyes.append(eye2)
@@ -99,9 +103,128 @@ func _ready():
 	mouthSprite.self_modulate = hairSprite.self_modulate
 	clothesSprite.self_modulate = RandomThatColor()
 	
-	var numScale = randf_range(1,1.5)
+	var numScale = randf_range(1.15,1.65)
 	get_parent().scale = Vector2(numScale,numScale)
 
+
+func ConversationRandomizer():
+	if !npcScript.specialGuest:
+		var number = randi_range(0,20)
+		match number:
+			0:																       #LINE OF DEATH
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Finally."},
+					{"speaker": "NPC", "text": "This queue is quite long you know?"},
+					{"speaker": "NPC", "text": "I'm so happy I was able to come!"}]
+			1:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "My legs hurt..."}]
+			2,19,20:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Here."}]
+			3:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "One moment... Ok."}]
+			4:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "I thought there would be"},
+					{"speaker": "NPC", "text": "more security at the entrance..."}]
+			5:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Do I look like someone"},
+					{"speaker": "NPC", "text": "who needs a ticket? I’m a VIP!"}]
+			6:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "I didn’t know there would be"},
+					{"speaker": "NPC", "text": "so much paperwork involved."}]
+			7:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "I almost lost it on the train."},
+					{"speaker": "NPC", "text": "Good thing I didn’t!"}]
+			8:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "You’re really serious about this..."}]
+			9:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "I almost lost it on the train."},
+					{"speaker": "NPC", "text": "Good thing I didn’t!"}]
+			10:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Do you have any idea"},
+					{"speaker": "NPC", "text": "how long I waited for this day?!"}]
+			11:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Can I get in with"},
+					{"speaker": "NPC", "text": "just my Hololive love?"},
+					{"speaker": "Player", "text": "No."},
+					{"speaker": "NPC", "text": "Damn..."}]
+			12:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Oh, I’m late, aren’t I?"},
+					{"speaker": "NPC", "text": "Please tell me"},
+					{"speaker": "NPC", "text": "I didn’t miss the best part already."}]
+			13:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "Do you know who I am?"},
+					{"speaker": "NPC", "text": "I’ve been to every HoloCon!"}]
+			14:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."},
+					{"speaker": "NPC", "text": "I’ve got a ticket... "},
+					{"speaker": "NPC", "text": "But my friend doesn't."},
+					{"speaker": "NPC", "text": "Can you let them in anyway?"},
+					{"speaker": "NPC", "text": "He's somewhere in the line."},
+					{"speaker": "NPC", "text": "I think?"}]
+			15,16,17,18:
+				npcScript.conversation = [{"speaker": "Player", "text": "Your Ticket."}]
+		
+		
+		number = randi_range(0,21)
+		match number:
+			0:																       #LINE OF DEATH
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Seems good."},
+					{"speaker": "NPC", "text": "Finally."},
+					{"speaker": "NPC", "text": "Holocon!! Here I come!!!"}]
+			1:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "You're good to go."},
+					{"speaker": "NPC", "text": "Finally."},
+					{"speaker": "NPC", "text": "Holocon!! Here I come!!!"}]
+			2:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Welcome To Holocon1999"},
+					{"speaker": "NPC", "text": "Finally."},
+					{"speaker": "NPC", "text": "Holocon!! Here I come!!!"}]
+			3:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Seems good."},
+					{"speaker": "NPC", "text": "So EXCITED!"}]
+			4:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "You're good to go."},
+					{"speaker": "NPC", "text": "So EXCITED!"}]
+			5:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Welcome To Holocon1999"},
+					{"speaker": "NPC", "text": "So EXCITED!"}]
+			6,7:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Seems good."}]
+			8,9:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "You're good to go."}]
+			10,11,12:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Welcome To Holocon1999"}]
+			13:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Seems good."},
+					{"speaker": "NPC", "text": "YES!"}]
+			14:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "You're good to go."},
+					{"speaker": "NPC", "text": "YES!"}]
+			15:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Welcome To Holocon1999"},
+					{"speaker": "NPC", "text": "YES!"}]
+			16,21:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Seems good."},
+					{"speaker": "NPC", "text": "Thanks."}]
+			17,20:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "You're good to go."},
+					{"speaker": "NPC", "text": "Thanks."}]
+			18,19:
+				npcScript.convoApproved = [{"speaker": "Player", "text": "Welcome To Holocon1999"},
+					{"speaker": "NPC", "text": "Thanks."}]
 
 func RandomThatColor():
 	var newColor = Color(RandomThat(), RandomThat(), RandomThat())

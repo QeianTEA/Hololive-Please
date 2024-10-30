@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bga50g7bl7dbq"]
+[gd_scene load_steps=17 format=3 uid="uid://bga50g7bl7dbq"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_56ldf"]
 [ext_resource type="Texture2D" uid="uid://rxkmx7ehlseh" path="res://Sprites/Characters/Generic NPC sprite/base.png" id="1_v2apn"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://1wo5dh3m61ex" path="res://Sprites/Characters/Generic NPC sprite/Clothes/clothes1.png" id="3_ltfie"]
 [ext_resource type="Texture2D" uid="uid://ow0fnfjfa47u" path="res://Sprites/Characters/Generic NPC sprite/Mouth/mouth1.png" id="3_t5w65"]
 [ext_resource type="Texture2D" uid="uid://hx80upyk325r" path="res://Sprites/Characters/Generic NPC sprite/hair/hair1.png" id="4_dlqhs"]
-[ext_resource type="Texture2D" uid="uid://crxtn8ahe1cmv" path="res://Sprites/Table/Tableb.png" id="8_rjlhe"]
 
 [sub_resource type="Animation" id="Animation_thtbd"]
 resource_name = "new_animation"
@@ -282,7 +281,7 @@ Document1 = ExtResource("3_fkhx8")
 
 [node name="BaseSprite" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-skew = -0.0279253
+skew = 0.0279253
 texture = ExtResource("1_v2apn")
 script = ExtResource("3_4rn6t")
 
@@ -310,12 +309,5 @@ autoplay = "EnterLeft"
 libraries = {
 "": SubResource("AnimationLibrary_tyrje")
 }
-
-[node name="Table" type="Sprite2D" parent="."]
-visible = false
-z_index = -2
-position = Vector2(169.6, 89.6)
-scale = Vector2(2.4, 2.4)
-texture = ExtResource("8_rjlhe")
 
 [connection signal="animation_finished" from="Come" to="." method="_on_come_animation_finished"]
